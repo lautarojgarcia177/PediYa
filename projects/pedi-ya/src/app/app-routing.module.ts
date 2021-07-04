@@ -10,7 +10,12 @@ const routes: Routes = [
   {
     path: 'order',
     loadChildren: () =>
-      import('./features/order/order.module').then((m) => m.OrderModule)
+    import('./features/order/order.module').then((m) => m.OrderModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/login-register/login-register.module').then((m) => m.LoginRegisterModule)
   },
   {
     path: 'about',

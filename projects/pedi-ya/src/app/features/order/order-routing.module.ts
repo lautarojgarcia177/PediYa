@@ -21,13 +21,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'todos',
+        redirectTo: 'menu-list',
         pathMatch: 'full'
       },
       {
-        path: 'todos',
+        path: 'menu-list',
         component: TodosContainerComponent,
-        data: { title: 'pedi-ya.order.menu.todos' }
+        canActivate: [AuthGuardService],
+        data: { title: 'pedi-ya.order.menu-list.title' }
       },
       {
         path: 'stock-market',

@@ -109,5 +109,7 @@
   "pedi-ya.order.todos.toggle.notification": "Alternadas de {{name}} a",
   "pedi-ya.order.todos.tooltip.add": "Nuevo recordatorio",
   "pedi-ya.order.todos.tooltip.remove": "Eliminar completados",
-  "pedi-ya.order.todos.undo": "Deshacer"
+  "pedi-ya.order.todos.undo": "Deshacer",
+  "pedi-ya.order.menu-list.title": "Menus",
+  "pedi-ya.order.menu-list.search": "Buscar"
 }

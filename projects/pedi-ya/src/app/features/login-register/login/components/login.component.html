@@ -1,0 +1,57 @@
+<div class="container" rtl>
+  <div class="row">
+    <div class="col">
+      <h1 class="main-heading">{{ 'pedi-ya.login-register.form.title' | translate }}</h1>
+    </div>
+  </div>
+  <ng-container *ngIf="formValueChanges$ | async as updatedForm">
+    {{update(updatedForm)}}
+  </ng-container>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <mat-card>
+          <span class="d-flex justify-content-between align-items-baseline">
+            <h2>{{ 'pedi-ya.login-register.form.subtitle1' | translate }}</h2>
+          </span>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="{{ 'pedi-ya.login-register.form.placeholder3' | translate }}"
+                formControlName="email" type="email">
+              <mat-error *ngIf="form.get('email').hasError('required')">
+                {{ 'pedi-ya.login-register.form.placeholder3' | translate }}
+                {{ 'pedi-ya.login-register.form.error1' | translate }}
+              </mat-error>
+              <mat-error *ngIf="form.get('email').hasError('email')">
+                {{ 'pedi-ya.login-register.form.placeholder3' | translate }}
+                {{ 'pedi-ya.login-register.form.error2' | translate }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput type="password" placeholder="{{ 'pedi-ya.login-register.form.placeholder2' | translate }}"
+                formControlName="password">
+              <mat-error *ngIf="form.get('password').invalid">
+                {{ 'pedi-ya.login-register.form.placeholder2' | translate }}
+                {{ 'pedi-ya.login-register.form.error1' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row buttons d-flex justify-content-between pad">
+            <button mat-raised-button color="primary" [ngClass]="routeAnimationsElements">
+              {{ 'pedi-ya.login-register.form.send' | translate }}
+            </button>
+            <button type="button" mat-raised-button color="accent" [disabled]="form.get('autosave').value"
+              [ngClass]="routeAnimationsElements" (click)="save()">
+              {{ 'pedi-ya.login-register.form.save' | translate }}
+            </button>
+            <button type="reset" mat-raised-button (click)="reset()" [ngClass]="routeAnimationsElements">
+              {{ 'pedi-ya.login-register.form.reset' | translate }}
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </form>
+
+</div>
