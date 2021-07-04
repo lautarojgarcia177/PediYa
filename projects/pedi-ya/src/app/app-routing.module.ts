@@ -4,11 +4,11 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'menu-list',
+    redirectTo: 'order',
     pathMatch: 'full'
   },
   {
-    path: 'menu-list',
+    path: 'order',
     loadChildren: () =>
       import('./features/order/order.module').then((m) => m.OrderModule)
   },

@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   logo = 'assets/logo.png';
   languages = ['en', 'es'];
   navigation = [
-    { link: 'menu-list', label: 'pedi-ya.menu.order' },
+    { link: 'order', label: 'pedi-ya.menu.order' },
     { link: 'about', label: 'pedi-ya.menu.about' },
     { link: 'examples', label: 'pedi-ya.menu.examples' }
   ];
