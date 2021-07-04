@@ -1,0 +1,44 @@
+<div class="container" rtl>
+
+  <div class="row">
+    <div class="col-12">
+      <h1 class="main-heading">{{ 'comidas-ya.examples.notifications.title' | translate }}</h1>
+    </div>
+  </div>
+  
+  <div class="row item" [ngClass]="routeAnimationsElements">
+    <button mat-raised-button class="col-3 default" (click)="default()">
+      {{ 'comidas-ya.examples.notifications.default.title' | translate }}
+    </button>
+    <p class="col-9">{{ 'comidas-ya.examples.notifications.default.description' | translate }}</p>
+  </div>
+
+  <div class="row item" [ngClass]="routeAnimationsElements">
+    <button mat-raised-button class="col-3 information" (click)="info()">
+      {{ 'comidas-ya.examples.notifications.info.title' | translate }}
+    </button>
+    <p class="col-9">{{ 'comidas-ya.examples.notifications.info.description' | translate }}</p>
+  </div>
+
+  <div class="row item" [ngClass]="routeAnimationsElements">
+    <button mat-raised-button class="col-3 success" (click)="success()">
+      {{ 'comidas-ya.examples.notifications.success.title' | translate }}
+    </button>
+    <p class="col-9">{{ 'comidas-ya.examples.notifications.success.description' | translate }}</p>
+  </div>
+
+  <div class="row item" [ngClass]="routeAnimationsElements">
+    <button mat-raised-button class="col-3 warning" (click)="warn()">
+      {{ 'comidas-ya.examples.notifications.warning.title' | translate }}
+    </button>
+    <p class="col-9">{{ 'comidas-ya.examples.notifications.warning.description' | translate }}</p>
+  </div>
+
+  <div class="row item" [ngClass]="routeAnimationsElements" >
+    <button mat-raised-button class="col-3 error" (click)="error()">
+      {{ 'comidas-ya.examples.notifications.error.title' | translate }}
+    </button>
+    <p class="col-9">{{ 'comidas-ya.examples.notifications.error.description' | translate }}</p>
+  </div>
+
+</div>

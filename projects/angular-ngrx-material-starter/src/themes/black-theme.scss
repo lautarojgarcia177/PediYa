@@ -1,0 +1,11 @@
+@use '~@angular/material' as mat;
+
+$comidas-ya-black-primary: mat.define-palette(mat.$grey-palette, 700, 300, 900);
+$comidas-ya-black-accent: mat.define-palette(mat.$blue-grey-palette, 400);
+$comidas-ya-black-warn: mat.define-palette(mat.$red-palette, 500);
+
+$comidas-ya-black-theme: mat.define-dark-theme(
+  $comidas-ya-black-primary,
+  $comidas-ya-black-accent,
+  $comidas-ya-black-warn
+);

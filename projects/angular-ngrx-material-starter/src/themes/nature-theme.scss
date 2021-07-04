@@ -1,0 +1,16 @@
+@use '~@angular/material' as mat;
+
+$comidas-ya-nature-primary: mat.define-palette(
+  mat.$brown-palette,
+  700,
+  300,
+  900
+);
+$comidas-ya-nature-accent: mat.define-palette(mat.$deep-purple-palette, 300);
+$comidas-ya-nature-warn: mat.define-palette(mat.$red-palette, 600);
+
+$comidas-ya-nature-theme: mat.define-light-theme(
+  $comidas-ya-nature-primary,
+  $comidas-ya-nature-accent,
+  $comidas-ya-nature-warn
+);
