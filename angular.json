@@ -26,11 +26,17 @@
             "aot": true,
             "assets": [
               "projects/pedi-ya/src/favicon.ico",
-              "projects/pedi-ya/src/assets"
+              "projects/pedi-ya/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "projects/pedi-ya/src/styles-app-loading.scss",
-              "projects/pedi-ya/src/styles.scss"
+              "projects/pedi-ya/src/styles.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css"
             ],
             "scripts": []
           },
@@ -105,11 +111,17 @@
             "karmaConfig": "projects/pedi-ya/karma.conf.js",
             "assets": [
               "projects/pedi-ya/src/favicon.ico",
-              "projects/pedi-ya/src/assets"
+              "projects/pedi-ya/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "projects/pedi-ya/src/styles-app-loading.scss",
-              "projects/pedi-ya/src/styles.scss"
+              "projects/pedi-ya/src/styles.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css"
             ],
             "scripts": []
           },

@@ -15,6 +15,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(authLogin),
+        tap(() => 
+          this.router.navigate(['menu-list'])
+        ),
         tap(() =>
           this.localStorageService.setItem(AUTH_KEY, { isAuthenticated: true })
         )
@@ -27,7 +30,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(authLogout),
         tap(() => {
-          this.router.navigate(['']);
+          this.router.navigate(['auth']);
           this.localStorageService.setItem(AUTH_KEY, {
             isAuthenticated: false
           });

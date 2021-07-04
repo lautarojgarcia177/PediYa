@@ -20,6 +20,7 @@ import {
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pedi-ya-root',
@@ -51,8 +52,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private storageService: LocalStorageService
-  ) {}
+    private storageService: LocalStorageService,
+    private router: Router
+  ) { }
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);
@@ -75,7 +77,7 @@ export class AppComponent implements OnInit {
   }
 
   onLoginClick() {
-    this.store.dispatch(authLogin());
+    this.router.navigate(['auth']);
   }
 
   onLogoutClick() {
@@ -85,4 +87,5 @@ export class AppComponent implements OnInit {
   onLanguageSelect({ value: language }) {
     this.store.dispatch(actionSettingsChangeLanguage({ language }));
   }
+
 }
