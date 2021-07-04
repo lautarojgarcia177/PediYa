@@ -19,11 +19,11 @@
   "rules": {
     "@angular-eslint/directive-selector": [
       "error",
-      { "type": "attribute", "prefix": "comidas-ya", "style": "camelCase" }
+      { "type": "attribute", "prefix": "pedi-ya", "style": "camelCase" }
     ],
     "@angular-eslint/component-selector": [
       "error",
-      { "type": "element", "prefix": "comidas-ya", "style": "kebab-case" }
+      { "type": "element", "prefix": "pedi-ya", "style": "kebab-case" }
     ],
     "@angular-eslint/component-class-suffix": "error",
     "@angular-eslint/directive-class-suffix": "error",

@@ -1,0 +1,16 @@
+@use '~@angular/material' as mat;
+
+$pedi-ya-nature-primary: mat.define-palette(
+  mat.$brown-palette,
+  700,
+  300,
+  900
+);
+$pedi-ya-nature-accent: mat.define-palette(mat.$deep-purple-palette, 300);
+$pedi-ya-nature-warn: mat.define-palette(mat.$red-palette, 600);
+
+$pedi-ya-nature-theme: mat.define-light-theme(
+  $pedi-ya-nature-primary,
+  $pedi-ya-nature-accent,
+  $pedi-ya-nature-warn
+);

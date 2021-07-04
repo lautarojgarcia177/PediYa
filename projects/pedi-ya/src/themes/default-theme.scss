@@ -1,0 +1,11 @@
+@use '~@angular/material' as mat;
+
+$pedi-ya-primary: mat.define-palette(mat.$indigo-palette, 800, 300, 900);
+$pedi-ya-accent: mat.define-palette(mat.$light-blue-palette);
+$pedi-ya-warn: mat.define-palette(mat.$pink-palette, 600);
+
+$pedi-ya-theme: mat.define-light-theme(
+  $pedi-ya-primary,
+  $pedi-ya-accent,
+  $pedi-ya-warn
+);

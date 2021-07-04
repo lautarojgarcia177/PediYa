@@ -1,0 +1,11 @@
+@use '~@angular/material' as mat;
+
+$pedi-ya-black-primary: mat.define-palette(mat.$grey-palette, 700, 300, 900);
+$pedi-ya-black-accent: mat.define-palette(mat.$blue-grey-palette, 400);
+$pedi-ya-black-warn: mat.define-palette(mat.$red-palette, 500);
+
+$pedi-ya-black-theme: mat.define-dark-theme(
+  $pedi-ya-black-primary,
+  $pedi-ya-black-accent,
+  $pedi-ya-black-warn
+);

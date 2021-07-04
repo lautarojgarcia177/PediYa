@@ -1,0 +1,24 @@
+<form [formGroup]="stateForm">
+    <mat-form-field appearance="fill">
+      <mat-label>States Group</mat-label>
+      <input type="text"
+             matInput
+             formControlName="stateGroup"
+             required
+             [matAutocomplete]="autoGroup">
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+            <mat-option *ngFor="let name of group.names" [value]="name">
+              {{name}}
+            </mat-option>
+        </mat-optgroup>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+<pedi-ya-big-input rtl [placeholder]="'pedi-ya.examples.todos.input' | translate" [value]="searchValue" (keyup)="onSearchValueChange($event.target.value)"
+  (keyup.enter)="onSearch()" (keyup.escape)="onSearchClear()">
+  <pedi-ya-big-input-action [noButtonFrame]="true" fontSet="fas" fontIcon="fa-search" faIcon="search" color="accent"
+    (action)="onSearch()" [matTooltip]="'pedi-ya.examples.todos.tooltip.add' | translate"
+    matTooltipPosition="before">
+  </pedi-ya-big-input-action>
+</pedi-ya-big-input>
