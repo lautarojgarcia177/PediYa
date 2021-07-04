@@ -1,25 +1,12 @@
 {
   "pedi-ya.login-register.register.title": "Register",
   "pedi-ya.login-register.login.title": "Login",
-  "pedi-ya.login-register.login.autosave": "Auto Save",
+  "pedi-ya.login-register.login.email": "Email",
+  "pedi-ya.login-register.login.password": "Password",
   "pedi-ya.login-register.login.error1": "is required",
   "pedi-ya.login-register.login.error2": "should be valid",
   "pedi-ya.login-register.login.error3": "should be longer than",
   "pedi-ya.login-register.login.error4": "should be smaller than",
-  "pedi-ya.login-register.login.placeholder1": "Username",
-  "pedi-ya.login-register.login.placeholder2": "Password",
-  "pedi-ya.login-register.login.placeholder3": "E-mail",
-  "pedi-ya.login-register.login.placeholder4": "Description",
-  "pedi-ya.login-register.login.placeholder5": "Birthday",
-  "pedi-ya.login-register.login.reset": "Reset",
-  "pedi-ya.login-register.login.save": "Save",
-  "pedi-ya.login-register.login.send": "Send",
-  "pedi-ya.login-register.login.subtitle1": "The login",
-  "pedi-ya.login-register.login.subtitle2": "Marketing inlogination",
-  "pedi-ya.login-register.login.text1": "Request a gift.",
-  "pedi-ya.login-register.login.text2": "Rate this login:",
-  "pedi-ya.login-register.login.text3": "You have to request a gift to see more inlogination.",
-  "pedi-ya.login-register.login.text4": "Gift sent!",
-  "pedi-ya.login-register.login.text5": "No gift sent.",
-  "pedi-ya.login-register.login.text6": "Clap"
+  "pedi-ya.login-register.login.login": "Login"
+
 }

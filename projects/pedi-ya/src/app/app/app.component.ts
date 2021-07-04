@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
       );
     }
 
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated), tap(x => console.log('is auth????', x )));
+    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
