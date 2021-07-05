@@ -29,6 +29,7 @@ import { OrderEffects } from './order.effects';
 import { UserComponent } from './simple-state-management/components/user.component';
 import { UserService } from './simple-state-management/user.service';
 import { ElementsComponent } from './elements/elements.component';
+import { MenuCardComponent } from './menu-card/menu-card.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
@@ -72,7 +73,8 @@ export function httpLoaderFactory(http: HttpClient) {
     FormComponent,
     NotificationsComponent,
     UserComponent,
-    ElementsComponent
+    ElementsComponent,
+    MenuCardComponent
   ],
   providers: [StockMarketService, UserService]
 })
