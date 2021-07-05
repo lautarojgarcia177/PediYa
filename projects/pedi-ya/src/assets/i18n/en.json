@@ -34,6 +34,8 @@
   "pedi-ya.header.github": "Project Github Repository",
   "pedi-ya.menu.order": "Order",
   "pedi-ya.menu.about": "About",
+  "pedi-ya.about.title": "About",
+  "pedi-ya.about.description": "App to make orders to a restaurant",
   "pedi-ya.menu.examples": "Examples",
   "pedi-ya.menu.features": "Features",
   "pedi-ya.menu.login": "Sign in",
