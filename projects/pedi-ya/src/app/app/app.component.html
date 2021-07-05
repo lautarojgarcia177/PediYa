@@ -10,7 +10,7 @@
           routerLinkActive="active">
           {{item.label | translate}}
         </a>
-        <a mat-list-item href="https://github.com/tomastrajan/pedi-ya" target="_blank" rel="noopener noreferrer">
+        <a mat-list-item href="https://github.com/lautarojgarcia177/PediYa" target="_blank" rel="noopener noreferrer">
           Github
         </a>
       </mat-nav-list>
@@ -84,20 +84,16 @@
 
       <div class="footer">
         <div class="row">
-          <div class="col-sm-12 links">
-            <a href="https://www.linkedin.com/in/lautaro-garcia-b19b75164/" target="_blank" rel="noopener noreferrer">
-              <fa-icon [icon]="['fab','linkedin']"></fa-icon>
-              <span>LinkedIn</span>
-            </a>
-            <a href="https://www.github.com/lautarojgarcia177" target="_blank" rel="noopener noreferrer">
-              <fa-icon [icon]="['fab','github']"></fa-icon>
-              <span>Github</span>
-            </a>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-12 signature">
             <span class="year">{{year}}</span> - Made by Lautaro Garcia
+            <span class="links">
+              <a href="https://www.linkedin.com/in/lautaro-garcia-b19b75164/" target="_blank" rel="noopener noreferrer">
+                <fa-icon [icon]="['fab','linkedin']"></fa-icon>
+              </a>
+              <a href="https://www.github.com/lautarojgarcia177" target="_blank" rel="noopener noreferrer">
+                <fa-icon [icon]="['fab','github']"></fa-icon>
+              </a>
+            </span>
             <br class="d-block d-sm-none">
             <a [matTooltip]="'pedi-ya.footer.changelog' | translate"
                matTooltipPosition="before"
