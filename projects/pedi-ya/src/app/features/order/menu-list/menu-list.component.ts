@@ -4,10 +4,11 @@ import { Store } from "@ngrx/store";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/animations/route.animations";
 import { Menu } from "../order.models";
 import { OrderService } from "../order.service";
-import { State } from "../order.state";
+import { selectOrders, State } from "../order.state";
 import * as cartActions from "../cart/cart.actions";
 import { Subscription } from "rxjs";
-import { tap } from "rxjs/operators";
+import { pluck, tap } from "rxjs/operators";
+import { CartItem, CartState } from "../cart/cart.model";
 
 @Component({
     selector: 'pedi-ya-menu-card',
@@ -15,16 +16,17 @@ import { tap } from "rxjs/operators";
     styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuListComponent implements OnInit, OnDestroy{
+export class MenuListComponent implements OnInit, OnDestroy {
 
     routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
     menusSubscription: Subscription;
     menus: Menu[];
     storeSubscription: Subscription;
+    cartItems: CartItem[];
 
-    constructor(private orderService: OrderService, private store: Store<State>, private router: Router, private changeDetector: ChangeDetectorRef) { 
-        
+    constructor(private orderService: OrderService, private store: Store<State>, private router: Router, private changeDetector: ChangeDetectorRef) {
+
     }
 
     ngOnInit(): void {
@@ -32,7 +34,14 @@ export class MenuListComponent implements OnInit, OnDestroy{
             this.menus = menus;
             this.changeDetector.detectChanges();
         });
-        this.storeSubscription = this.store.subscribe(console.log);
+        this.storeSubscription = this.store.select(selectOrders)
+            .pipe(
+                pluck('cart'),
+                pluck('items'),
+            ).subscribe((cartItems: CartItem[]) => {
+                this.cartItems = cartItems;
+                this.changeDetector.detectChanges();
+            });
     }
 
     ngOnDestroy(): void {
@@ -42,11 +51,11 @@ export class MenuListComponent implements OnInit, OnDestroy{
 
     public onAddMenuToCart(menu: Menu) {
         console.log(menu);
-        this.store.dispatch(cartActions.addToCart({menu}));
+        this.store.dispatch(cartActions.addToCart({ menu }));
     }
 
     public onRemoveMenuFromCart(menu: Menu) {
-        this.store.dispatch(cartActions.removeFromCart({menu}));
+        this.store.dispatch(cartActions.removeFromCart({ menu }));
     }
 
     public onResetCart() {

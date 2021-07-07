@@ -112,6 +112,6 @@
   "pedi-ya.order.todos.undo": "Deshacer",
   "pedi-ya.order.menu-list.title": "Menus",
   "pedi-ya.order.menu-list.search": "Buscar",
-  "pedi-ya.order.menu-list.addToCart": "Añadir al carrito",
+  "pedi-ya.order.menu-list.addToCart": "Añadir al pedido",
   "pedi-ya.order.menu-list.goToCheckout": "Ir al checkout"
 }

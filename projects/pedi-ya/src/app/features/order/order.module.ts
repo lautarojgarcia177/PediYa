@@ -9,7 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../../shared/shared.module';
 import { environment } from '../../../environments/environment';
 
-import { reducers } from './order.state';
+import { FEATURE_NAME, reducers } from './order.state';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order/order.component';
 import { OrderEffects } from './order.effects';
@@ -38,7 +38,7 @@ export function httpLoaderFactory(http: HttpClient) {
       },
       isolate: true
     }),
-    StoreModule.forFeature('order', reducers),
+    StoreModule.forFeature(FEATURE_NAME, reducers),
     EffectsModule.forFeature([
       OrderEffects
     ])
