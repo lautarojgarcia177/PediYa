@@ -9,27 +9,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../../shared/shared.module';
 import { environment } from '../../../environments/environment';
 
-import { FEATURE_NAME, reducers } from './order.state';
+import { reducers } from './order.state';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order/order.component';
-import { TodosContainerComponent } from './todos/components/todos-container.component';
-import { TodosEffects } from './todos/todos.effects';
-import { StockMarketContainerComponent } from './stock-market/components/stock-market-container.component';
-import { StockMarketEffects } from './stock-market/stock-market.effects';
-import { StockMarketService } from './stock-market/stock-market.service';
-import { ParentComponent } from './theming/parent/parent.component';
-import { ChildComponent } from './theming/child/child.component';
-import { CrudComponent } from './crud/components/crud.component';
-import { BooksEffects } from './crud/books.effects';
-import { FormComponent } from './form/components/form.component';
-import { FormEffects } from './form/form.effects';
-import { AuthenticatedComponent } from './authenticated/authenticated.component';
-import { NotificationsComponent } from './notifications/components/notifications.component';
 import { OrderEffects } from './order.effects';
-import { UserComponent } from './simple-state-management/components/user.component';
-import { UserService } from './simple-state-management/user.service';
-import { ElementsComponent } from './elements/elements.component';
-import { MenuCardComponent } from './menu-card/menu-card.component';
+import { MenuListComponent } from './menu-list/menu-list.component';
+import { OrderService } from './order.service';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
@@ -45,7 +30,6 @@ export function httpLoaderFactory(http: HttpClient) {
     LazyElementsModule,
     SharedModule,
     OrderRoutingModule,
-    StoreModule.forFeature(FEATURE_NAME, reducers),
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -54,29 +38,16 @@ export function httpLoaderFactory(http: HttpClient) {
       },
       isolate: true
     }),
+    StoreModule.forFeature('order', reducers),
     EffectsModule.forFeature([
-      OrderEffects,
-      TodosEffects,
-      StockMarketEffects,
-      BooksEffects,
-      FormEffects
+      OrderEffects
     ])
   ],
   declarations: [
     OrderComponent,
-    TodosContainerComponent,
-    StockMarketContainerComponent,
-    ParentComponent,
-    ChildComponent,
-    AuthenticatedComponent,
-    CrudComponent,
-    FormComponent,
-    NotificationsComponent,
-    UserComponent,
-    ElementsComponent,
-    MenuCardComponent
+    MenuListComponent
   ],
-  providers: [StockMarketService, UserService]
+  providers: [OrderService]
 })
 export class OrderModule {
   constructor() {}

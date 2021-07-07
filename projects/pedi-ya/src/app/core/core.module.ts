@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { environment } from '../../environments/environment';
 
@@ -147,6 +148,7 @@ export function httpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatButtonToggleModule,
 
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -194,6 +196,7 @@ export function httpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatButtonToggleModule,
 
     // Firebase
     AngularFireModule,
