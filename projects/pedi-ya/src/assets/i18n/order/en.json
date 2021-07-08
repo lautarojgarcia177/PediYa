@@ -51,5 +51,8 @@
   "pedi-ya.order.checkout.emptyCart": "Empty order",
   "pedi-ya.order.checkout.title": "Checkout",
   "pedi-ya.order.checkout.confirmOrder": "Confirm order",
+  "pedi-ya.order.checkout.orderConfirmed": "The order has been confirmed",
+  "pedi-ya.order.checkout.cancelOrder": "Cancel order",
+  "pedi-ya.order.checkout.orderCancelled": "The order has been cancelded",
   "pedi-ya.order.checkout.noItemsInCart": "There's no items in the order"
 }

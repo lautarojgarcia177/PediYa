@@ -44,8 +44,11 @@
                 </div>
 
             </div>
-            <div class="col-12">
-                <button mat-button (click)="onConfirmOrder()">
+            <div class="col-12 mt-2 d-flex justify-content-end">
+                <button mat-raised-button mat-button color="warn" (click)="onCancelOrder()">
+                    {{'pedi-ya.order.checkout.cancelOrder' | translate}}
+                </button>
+                <button mat-raised-button mat-button (click)="onConfirmOrder()">
                     {{'pedi-ya.order.checkout.confirmOrder' | translate}}
                 </button>
             </div>

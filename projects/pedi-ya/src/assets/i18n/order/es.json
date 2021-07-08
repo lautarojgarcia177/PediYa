@@ -25,5 +25,8 @@
   "pedi-ya.order.checkout.emptyCart": "Vaciar pedido",
   "pedi-ya.order.checkout.title": "Checkout",
   "pedi-ya.order.checkout.confirmOrder": "Confirmar pedido",
+  "pedi-ya.order.checkout.orderConfirmed": "Pedido confirmado",
+  "pedi-ya.order.checkout.cancelOrder": "Cancelar pedido",
+  "pedi-ya.order.checkout.orderCancelled": "Pedido cancelado",
   "pedi-ya.order.checkout.noItemsInCart": "No hay ningun menu en el pedido"
 }
