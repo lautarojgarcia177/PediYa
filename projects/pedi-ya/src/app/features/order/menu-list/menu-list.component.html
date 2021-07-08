@@ -1,18 +1,18 @@
 <div class="container">
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-12">
     <h1 rtl class="main-heading">
       {{ 'pedi-ya.order.menu-list.title' | translate }}
     </h1>
   </div>
 </div>
 <div class="row" [ngClass]="routeAnimationsElements" rtl>
-  <div *ngIf="menusAndStore$ | async" class="col-md-12 col-lg-6">
+  <div *ngIf="menusAndStore$ | async" class="col-12">
         <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-2">
           <mat-card-header>
               <mat-card-title>{{menu?.name}}</mat-card-title>
           </mat-card-header>
-          <img *ngIf="menu?.img" class="animate__animated animate__fadeIn animate__slow" mat-card-image [src]="menu?.img" alt="Photo of {{menu.name}}">
+          <img *ngIf="menu?.img" width="350" class="animate__animated animate__fadeIn animate__slow" mat-card-image [src]="menu?.img" alt="Photo of {{menu.name}}">
           <mat-card-content>
               <p>{{menu?.description}}</p>
           </mat-card-content>
@@ -30,13 +30,15 @@
           </mat-card-actions>
       </mat-card>
   </div>
-  <div class="col-md-12 col-lg-6" [ngClass]="routeAnimationsElements">
-    <button mat-raised-button class="default m-2" (click)="onResetCart()">
-      {{ 'pedi-ya.order.menu-list.emptyCart' | translate }}
-    </button>
-    <button mat-raised-button class="default m-2" (click)="onGoToCheckout()">
-      {{ 'pedi-ya.order.menu-list.goToCheckout' | translate }}
-    </button>
-  </div>
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.items.length > 0" class="col-12" [ngClass]="routeAnimationsElements">
+          <button mat-raised-button class="default m-2" (click)="onResetCart()">
+            {{ 'pedi-ya.order.checkout.emptyCart' | translate }}
+          </button>
+          <button mat-raised-button class="default m-2" (click)="onGoToCheckout()">
+            {{ 'pedi-ya.order.menu-list.goToCheckout' | translate }}
+          </button>
+      </div>
+  </ng-container>
 </div>
 </div>   

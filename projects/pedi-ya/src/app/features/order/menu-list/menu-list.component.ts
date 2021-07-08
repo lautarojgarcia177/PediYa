@@ -62,8 +62,9 @@ export class MenuListComponent {
         tap(() => this.changeDetector.detectChanges()),
     )
 
-    constructor(private orderService: OrderService, private store: Store<AppState>, private router: Router, private changeDetector: ChangeDetectorRef) {
+    cartItems$ = this.store.select(selectOrders).pipe(pluck('cart'))
 
+    constructor(private orderService: OrderService, private store: Store<AppState>, private router: Router, private changeDetector: ChangeDetectorRef) {
     }
 
     public onAddMenuToCart(menuWithCart: MenuWithCart) {

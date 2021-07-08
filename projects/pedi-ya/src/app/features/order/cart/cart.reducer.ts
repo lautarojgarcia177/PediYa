@@ -22,6 +22,10 @@ function calculateTotal(cartItems: CartItem[]): number {
     );
 }
 
+function calculateSubtotal(cartItem: CartItem): number {
+    return cartItem.menu.price * cartItem.amount;
+}
+
 function addItemToCart(state: CartState, menu: Menu) {
     const _state = _.cloneDeep(state);
     let i = 0;
@@ -29,15 +33,19 @@ function addItemToCart(state: CartState, menu: Menu) {
     do {
         if (_state.items[i]?.menu?.name === menu.name) {
             _state.items[i].amount++;
+            _state.items[i].subtotal = calculateSubtotal(_state.items[i]);
             found = true;
         }
         i++;
     } while (i < _state.items.length && !found);
     if (found) return _state;
-    const newCartItem: CartItem = {
+    let newCartItem: CartItem = {
         menu: menu,
-        amount: 1
+        amount: 1,
+        subtotal: 0
     }
+    const subtotal = calculateSubtotal(newCartItem);
+    newCartItem.subtotal = subtotal;
     _state.items.push(newCartItem);
     _state.total = calculateTotal(_state.items);
     return _state;
@@ -51,6 +59,7 @@ function removeItemFromCart(state: CartState, menu: Menu) {
         if (_state.items[i]?.menu?.name === menu.name) {
             if (_state.items[i]?.amount > 0) {
                 _state.items[i].amount--;
+                _state.items[i].subtotal = calculateSubtotal(_state.items[i]);
             }
             found = true;
         }

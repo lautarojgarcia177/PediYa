@@ -22,7 +22,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTableModule} from '@angular/material/table';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import {
   FontAwesomeModule,
@@ -83,6 +85,8 @@ import { PipesModule } from './pipes/pipes.module';
     MatAutocompleteModule,
     MatOptionModule,
     MatButtonToggleModule,
+    MatTableModule,
+    MatBadgeModule,
 
     FontAwesomeModule,
 
@@ -121,6 +125,8 @@ import { PipesModule } from './pipes/pipes.module';
     MatAutocompleteModule,
     MatOptionModule,
     MatButtonToggleModule,
+    MatTableModule,
+    MatBadgeModule,
     
     FontAwesomeModule,
 

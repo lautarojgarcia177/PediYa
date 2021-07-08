@@ -19,8 +19,10 @@ import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
-import { tap } from 'rxjs/operators';
+import { map, pluck, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { selectOrders } from '../features/order/order.state';
+import { CartItem } from '../features/order/cart/cart.model';
 
 @Component({
   selector: 'pedi-ya-root',
@@ -48,6 +50,7 @@ export class AppComponent implements OnInit {
   stickyHeader$: Observable<boolean>;
   language$: Observable<string>;
   theme$: Observable<string>;
+  amountOfOrderItems$: Observable<number>;
 
   constructor(
     private store: Store,
@@ -73,6 +76,13 @@ export class AppComponent implements OnInit {
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
+    this.amountOfOrderItems$ = this.store.select(selectOrders)
+      .pipe(
+        pluck('cart'),
+        pluck('items'),
+        map((cartItems: CartItem[]) => cartItems?.reduce(
+          (acc, curr) => acc += curr.amount, 0)),
+      );
   }
 
   onLoginClick() {

@@ -1,15 +1,23 @@
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as cartActions from '../cart/cart.actions';
 
 import {
-    AppState,
+  AppState,
   routeAnimations,
+  ROUTE_ANIMATIONS_ELEMENTS,
   selectIsAuthenticated
 } from '../../../core/core.module';
 
+export interface Transaction {
+  item: string;
+  cost: number;
+}
+
 import { selectOrders, State } from '../order.state';
-import { pluck } from 'rxjs/operators';
+import { pluck, tap } from 'rxjs/operators';
+import { CartState } from '../cart/cart.model';
 
 @Component({
   selector: 'pedi-ya-order',
@@ -19,11 +27,20 @@ import { pluck } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckoutComponent implements OnInit {
-  
-    cart$ = this.store.select(selectOrders).pipe(pluck('cart'));
 
-  constructor(private store: Store<AppState>) {}
+  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+
+  cart$ = this.store.select(selectOrders).pipe(pluck('cart'));
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
+
+  displayedColumns = ['name','amount', 'price', 'subtotal'];
+  
+  onConfirmOrder() {
+    this.store.dispatch(cartActions.resetCart());
+  }
+
 }
