@@ -7,8 +7,8 @@
   </div>
 </div>
 <div class="row" [ngClass]="routeAnimationsElements" rtl>
-  <div class="col-md-12 col-lg-6">
-        <mat-card *ngFor="let menu of menus; index as i" class="animate__animated animate__fadeIn mb-2">
+  <div *ngIf="menusAndStore$ | async" class="col-md-12 col-lg-6">
+        <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-2">
           <mat-card-header>
               <mat-card-title>{{menu?.name}}</mat-card-title>
           </mat-card-header>
@@ -26,11 +26,14 @@
                   <mat-icon>remove</mat-icon>
                 </mat-button-toggle>
               </mat-button-toggle-group>
-              <span *ngIf="cartItems[i]?.amount > 0">&nbsp;{{cartItems[i]?.amount}} unidades</span>
+              <span *ngIf="menu?.amountOnCart > 0">&nbsp;{{menu?.amountOnCart}} unidades</span>
           </mat-card-actions>
       </mat-card>
   </div>
   <div class="col-md-12 col-lg-6" [ngClass]="routeAnimationsElements">
+    <button mat-raised-button class="default m-2" (click)="onResetCart()">
+      {{ 'pedi-ya.order.menu-list.emptyCart' | translate }}
+    </button>
     <button mat-raised-button class="default m-2" (click)="onGoToCheckout()">
       {{ 'pedi-ya.order.menu-list.goToCheckout' | translate }}
     </button>

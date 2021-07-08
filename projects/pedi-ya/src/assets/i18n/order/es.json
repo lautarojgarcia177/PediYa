@@ -113,5 +113,7 @@
   "pedi-ya.order.menu-list.title": "Menus",
   "pedi-ya.order.menu-list.search": "Buscar",
   "pedi-ya.order.menu-list.addToCart": "Añadir al pedido",
-  "pedi-ya.order.menu-list.goToCheckout": "Ir al checkout"
+  "pedi-ya.order.menu-list.goToCheckout": "Ir al checkout",
+  "pedi-ya.order.checkout.emptyCart": "Vaciar orden",
+  "pedi-ya.order.checkout.title": "Checkout"
 }

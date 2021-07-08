@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
   navigation = [
     { link: 'order', label: 'pedi-ya.menu.order' },
     { link: 'about', label: 'pedi-ya.menu.about' },
-    { link: 'examples', label: 'pedi-ya.menu.examples' }
   ];
   navigationSideMenu = [
     ...this.navigation,

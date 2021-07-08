@@ -147,5 +147,7 @@
   "pedi-ya.order.menu-list.title": "Menu List",
   "pedi-ya.order.menu-list.search": "Search",
   "pedi-ya.order.menu-list.addToCart": "Add to order",
-  "pedi-ya.order.menu-list.goToCheckout": "Go to checkout"
+  "pedi-ya.order.menu-list.goToCheckout": "Go to checkout",
+  "pedi-ya.order.checkout.emptyCart": "Empty order",
+  "pedi-ya.order.checkout.title": "Checkout"
 }

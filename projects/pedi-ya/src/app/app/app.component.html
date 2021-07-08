@@ -59,6 +59,15 @@
             <fa-icon icon="cog"></fa-icon>
           </button>
 
+          <a [matTooltip]="'pedi-ya.header.cart' | translate"
+            matTooltipPosition="before"
+            mat-icon-button
+            class="link d-none d-sm-inline"
+            [routerLink]="['order', 'checkout']"
+            rel="noopener noreferrer">
+          <mat-icon>shopping_cart</mat-icon>
+          </a>
+
           <a [matTooltip]="'pedi-ya.header.github' | translate"
              matTooltipPosition="before"
              mat-icon-button
@@ -85,15 +94,7 @@
       <div class="footer">
         <div class="row">
           <div class="col-12 signature">
-            <span class="year">{{year}}</span> - Made by Lautaro Garcia
-            <span class="links">
-              <a href="https://www.linkedin.com/in/lautaro-garcia-b19b75164/" target="_blank" rel="noopener noreferrer">
-                <fa-icon [icon]="['fab','linkedin']"></fa-icon>
-              </a>
-              <a href="https://www.github.com/lautarojgarcia177" target="_blank" rel="noopener noreferrer">
-                <fa-icon [icon]="['fab','github']"></fa-icon>
-              </a>
-            </span>
+            <span class="year">{{year}}</span> - Made by <a href="https://github.com/lautarojgarcia177" target="_blank">Lautaro Garcia</a>
             <br class="d-block d-sm-none">
             <a [matTooltip]="'pedi-ya.footer.changelog' | translate"
                matTooltipPosition="before"

@@ -5,6 +5,7 @@ import { AuthGuardService } from '../../core/core.module';
 
 import { OrderComponent } from './order/order.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
         path: 'menu-list',
         component: MenuListComponent,
         data: { title: 'pedi-ya.order.menu-list.title' }
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        data: { title: 'pedi-ya.order.checkout.title' }
       },
     ]
   }

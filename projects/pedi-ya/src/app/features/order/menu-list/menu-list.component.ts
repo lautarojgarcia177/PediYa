@@ -6,9 +6,29 @@ import { Menu } from "../order.models";
 import { OrderService } from "../order.service";
 import { selectOrders, State } from "../order.state";
 import * as cartActions from "../cart/cart.actions";
-import { Subscription } from "rxjs";
-import { pluck, tap } from "rxjs/operators";
+import { combineLatest, Subscription } from "rxjs";
+import { map, mergeMap, pluck, switchMap, take, tap, withLatestFrom } from "rxjs/operators";
 import { CartItem, CartState } from "../cart/cart.model";
+import { AppState } from "../../../core/core.state";
+import { concatLatestFrom } from "@ngrx/effects";
+
+class MenuWithCart implements Menu {
+    id: string;
+    name: string;
+    description: string;
+    img: string;
+    price: number;
+    amountOnCart: number;
+    constructor(obj?: Partial<MenuWithCart>) {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+        this.img = null;
+        this.price = null;
+        this.amountOnCart = 0;
+        Object.assign(this, obj);
+    }
+}
 
 @Component({
     selector: 'pedi-ya-menu-card',
@@ -16,45 +36,55 @@ import { CartItem, CartState } from "../cart/cart.model";
     styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuListComponent implements OnInit, OnDestroy {
+export class MenuListComponent {
 
     routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
-    menusSubscription: Subscription;
-    menus: Menu[];
-    storeSubscription: Subscription;
-    cartItems: CartItem[];
+    public menusWithCart: MenuWithCart[];
 
-    constructor(private orderService: OrderService, private store: Store<State>, private router: Router, private changeDetector: ChangeDetectorRef) {
-
-    }
-
-    ngOnInit(): void {
-        this.menusSubscription = this.orderService.menus$.pipe(tap(console.warn)).subscribe(menus => {
-            this.menus = menus;
-            this.changeDetector.detectChanges();
-        });
-        this.storeSubscription = this.store.select(selectOrders)
-            .pipe(
-                pluck('cart'),
-                pluck('items'),
-            ).subscribe((cartItems: CartItem[]) => {
-                this.cartItems = cartItems;
-                this.changeDetector.detectChanges();
+    menusAndStore$ = this.orderService.menus$.pipe(
+        take(1),
+        tap(menus => {
+            let _menusWithCart: MenuWithCart[] = [];
+            menus.forEach(menu => {
+                const menuWithCart = new MenuWithCart(menu);
+                _menusWithCart.push(menuWithCart);
             });
+            this.menusWithCart = _menusWithCart;
+        }),
+        switchMap(() => this.store.select(selectOrders).pipe(pluck('cart'), pluck('items'))),
+        tap(() => this.menusWithCart.forEach(menu => menu.amountOnCart = 0)),
+        tap((cartItems) => {
+            cartItems.forEach(cartItem => {
+                this.menusWithCart.find(menu => menu.name === cartItem.menu.name).amountOnCart = cartItem.amount;
+            })
+        }),
+        tap(() => this.changeDetector.detectChanges()),
+    )
+
+    constructor(private orderService: OrderService, private store: Store<AppState>, private router: Router, private changeDetector: ChangeDetectorRef) {
+
     }
 
-    ngOnDestroy(): void {
-        this.menusSubscription.unsubscribe();
-        this.storeSubscription.unsubscribe();
-    }
-
-    public onAddMenuToCart(menu: Menu) {
-        console.log(menu);
+    public onAddMenuToCart(menuWithCart: MenuWithCart) {
+        const menu: Menu = {
+            id: menuWithCart.id,
+            name: menuWithCart.name,
+            description: menuWithCart.description,
+            img: menuWithCart.img,
+            price: menuWithCart.price,
+        }
         this.store.dispatch(cartActions.addToCart({ menu }));
     }
 
-    public onRemoveMenuFromCart(menu: Menu) {
+    public onRemoveMenuFromCart(menuWithCart: MenuWithCart) {
+        const menu: Menu = {
+            id: menuWithCart.id,
+            name: menuWithCart.name,
+            description: menuWithCart.description,
+            img: menuWithCart.img,
+            price: menuWithCart.price,
+        }
         this.store.dispatch(cartActions.removeFromCart({ menu }));
     }
 

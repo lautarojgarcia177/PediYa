@@ -91,5 +91,6 @@
    "ngxauthfirebaseui.resetPasswordActionButtonText": "Reset",
    "ngxauthfirebaseui.resetPasswordInstructionsText": "Please fill in your email address for password reset",
    "ngxauthfirebaseui.emailConfirmationTitle": "Confirm your e-mail address!",
-   "ngxauthfirebaseui.emailConfirmationText": "A confirmation e-mail has been sent to you. Check your inbox and click on the link 'Confirm my e-mail' to confirm your e-mail address."
-}
+   "ngxauthfirebaseui.emailConfirmationText": "A confirmation e-mail has been sent to you. Check your inbox and click on the link 'Confirm my e-mail' to confirm your e-mail address.",
+   "pedi-ya.header.cart": "Ir al checkout"
+  }
