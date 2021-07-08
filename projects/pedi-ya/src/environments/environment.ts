@@ -24,5 +24,14 @@ export const environment = {
     typescript: packageJson.devDependencies['typescript'],
     cypress: packageJson.devDependencies['cypress'],
     eslint: packageJson.devDependencies['eslint']
+  },
+  firebase: {
+    apiKey: "AIzaSyDP1ylYI2522V8_p_SLNXovS58Rn2kO_hk",
+    authDomain: "pediya-cde90.firebaseapp.com",
+    databaseURL: "https://pediya-cde90-default-rtdb.firebaseio.com",
+    projectId: "pediya-cde90",
+    storageBucket: "pediya-cde90.appspot.com",
+    messagingSenderId: "653352018722",
+    appId: "1:653352018722:web:329ea432ba7face6c7bb7b"
   }
 };

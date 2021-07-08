@@ -22,6 +22,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import {
   FontAwesomeModule,
@@ -55,6 +58,7 @@ import {
 import { BigInputComponent } from './big-input/big-input/big-input.component';
 import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
 import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -80,8 +84,13 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatDividerModule,
     MatAutocompleteModule,
     MatOptionModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatBadgeModule,
 
-    FontAwesomeModule
+    FontAwesomeModule,
+
+    PipesModule
   ],
   declarations: [
     BigInputComponent,
@@ -115,12 +124,17 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatOptionModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatBadgeModule,
     
     FontAwesomeModule,
 
     BigInputComponent,
     BigInputActionComponent,
-    RtlSupportDirective
+    RtlSupportDirective,
+
+    PipesModule
   ]
 })
 export class SharedModule {

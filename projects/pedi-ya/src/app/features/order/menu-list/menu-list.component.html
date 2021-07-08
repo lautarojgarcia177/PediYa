@@ -1,0 +1,55 @@
+<style>
+  mat-card {
+    width: 335px;
+  }
+  .menu-img {
+    height: 100%; object-fit: cover;
+  }
+</style>
+
+<div class="container">
+<div class="row">
+  <div class="col-12">
+    <h1 rtl class="main-heading">
+      {{ 'pedi-ya.order.menu-list.title' | translate }}
+    </h1>
+  </div>
+</div>
+<div class="row" [ngClass]="routeAnimationsElements" rtl>
+  <div *ngIf="menusAndStore$ | async" class="col-12 d-flex flex-wrap justify-content-between">
+        <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-3">
+          <mat-card-header>
+              <mat-card-title>{{menu?.name}}</mat-card-title>
+          </mat-card-header>
+          <div class="d-flex justify-content-center mt-2" style="height: 252px">
+            <img *ngIf="menu?.img" class="menu-img animate__animated animate__fadeIn animate__slow" mat-card-image [src]="menu?.img" alt="Photo of {{menu.name}}">
+          </div>
+          <mat-card-content>
+              <p style="margin-bottom: 0">{{menu?.description}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+              <span>{{'pedi-ya.order.menu-list.addToCart' | translate}}&nbsp;&nbsp;</span>
+              <mat-button-toggle-group #group="matButtonToggleGroup">
+                <mat-button-toggle (click)="onAddMenuToCart(menu)" value="add" aria-label="add one to cart">
+                  <mat-icon>add</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle (click)="onRemoveMenuFromCart(menu)" value="remove" aria-label="remove one from cart">
+                  <mat-icon>remove</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+              <span *ngIf="menu?.amountOnCart > 0">&nbsp;{{menu?.amountOnCart}} unidades</span>
+          </mat-card-actions>
+      </mat-card>
+  </div>
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.items.length > 0" class="col-12" [ngClass]="routeAnimationsElements">
+          <button mat-raised-button class="default m-2" (click)="onResetCart()">
+            {{ 'pedi-ya.order.checkout.emptyCart' | translate }}
+          </button>
+          <button mat-raised-button class="default m-2" (click)="onGoToCheckout()">
+            {{ 'pedi-ya.order.menu-list.goToCheckout' | translate }}
+          </button>
+      </div>
+  </ng-container>
+</div>
+</div>   

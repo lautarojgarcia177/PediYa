@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthComponent } from './core/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -8,9 +9,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'auth',
+    component: AuthComponent
+  },
+  {
     path: 'order',
     loadChildren: () =>
-      import('./features/order/order.module').then((m) => m.OrderModule)
+    import('./features/order/order.module').then((m) => m.OrderModule)
   },
   {
     path: 'about',
@@ -22,13 +27,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/settings/settings.module').then(
         (m) => m.SettingsModule
-      )
-  },
-  {
-    path: 'examples',
-    loadChildren: () =>
-      import('./features/examples/examples.module').then(
-        (m) => m.ExamplesModule
       )
   },
   {
