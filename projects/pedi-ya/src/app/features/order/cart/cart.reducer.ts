@@ -5,8 +5,22 @@ import { Menu } from "../order.models";
 import * as _ from "lodash";
 
 export const initialState: CartState = {
-    items: []
+    items: [],
+    total: 0
 };
+
+function calculateTotal(cartItems: CartItem[]): number {
+    return cartItems.reduce(
+        (acc, curr) => {
+            let subtotal = 0;
+            if (!!curr && !!curr.menu && !!curr.menu.price) {
+                subtotal = curr?.menu?.price * curr.amount;
+            }
+            return acc + subtotal;
+        },
+        0
+    );
+}
 
 function addItemToCart(state: CartState, menu: Menu) {
     const _state = _.cloneDeep(state);
@@ -18,13 +32,14 @@ function addItemToCart(state: CartState, menu: Menu) {
             found = true;
         }
         i++;
-    } while( i < _state.items.length && !found);
+    } while (i < _state.items.length && !found);
     if (found) return _state;
     const newCartItem: CartItem = {
         menu: menu,
         amount: 1
     }
     _state.items.push(newCartItem);
+    _state.total = calculateTotal(_state.items);
     return _state;
 }
 
@@ -40,17 +55,18 @@ function removeItemFromCart(state: CartState, menu: Menu) {
             found = true;
         }
         i++;
-    } while( i < _state.items.length && !found);
+    } while (i < _state.items.length && !found);
     _state.items = _state.items.filter(i => i.amount > 0);
+    _state.total = calculateTotal(_state.items);
     return _state;
 }
 
 const reducer = createReducer(
     initialState,
-    on(cartActions.addToCart, (state, {menu}) => {
+    on(cartActions.addToCart, (state, { menu }) => {
         return addItemToCart(state, menu);
     }),
-    on(cartActions.removeFromCart, (state, {menu}) => {
+    on(cartActions.removeFromCart, (state, { menu }) => {
         return removeItemFromCart(state, menu);
     }),
     on(cartActions.resetCart, (state) => initialState)

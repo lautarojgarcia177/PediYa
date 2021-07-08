@@ -15,6 +15,7 @@ import { OrderComponent } from './order/order.component';
 import { OrderEffects } from './order.effects';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { OrderService } from './order.service';
+import { CartEffects } from './cart/cart.effects';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
@@ -40,7 +41,8 @@ export function httpLoaderFactory(http: HttpClient) {
     }),
     StoreModule.forFeature(FEATURE_NAME, reducers),
     EffectsModule.forFeature([
-      OrderEffects
+      OrderEffects,
+      CartEffects
     ])
   ],
   declarations: [
