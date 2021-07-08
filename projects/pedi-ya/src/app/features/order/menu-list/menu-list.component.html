@@ -1,3 +1,12 @@
+<style>
+  mat-card {
+    width: 335px;
+  }
+  .menu-img {
+    height: 100%; object-fit: cover;
+  }
+</style>
+
 <div class="container">
 <div class="row">
   <div class="col-12">
@@ -7,14 +16,16 @@
   </div>
 </div>
 <div class="row" [ngClass]="routeAnimationsElements" rtl>
-  <div *ngIf="menusAndStore$ | async" class="col-12">
-        <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-2">
+  <div *ngIf="menusAndStore$ | async" class="col-12 d-flex flex-wrap justify-content-between">
+        <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-3">
           <mat-card-header>
               <mat-card-title>{{menu?.name}}</mat-card-title>
           </mat-card-header>
-          <img *ngIf="menu?.img" width="350" class="animate__animated animate__fadeIn animate__slow" mat-card-image [src]="menu?.img" alt="Photo of {{menu.name}}">
+          <div class="d-flex justify-content-center mt-2" style="height: 252px">
+            <img *ngIf="menu?.img" class="menu-img animate__animated animate__fadeIn animate__slow" mat-card-image [src]="menu?.img" alt="Photo of {{menu.name}}">
+          </div>
           <mat-card-content>
-              <p>{{menu?.description}}</p>
+              <p style="margin-bottom: 0">{{menu?.description}}</p>
           </mat-card-content>
           <mat-card-actions>
               <span>{{'pedi-ya.order.menu-list.addToCart' | translate}}&nbsp;&nbsp;</span>
