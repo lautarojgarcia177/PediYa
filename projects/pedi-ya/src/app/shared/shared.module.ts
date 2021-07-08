@@ -59,6 +59,7 @@ import { BigInputComponent } from './big-input/big-input/big-input.component';
 import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
 import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
 import { PipesModule } from './pipes/pipes.module';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @NgModule({
   imports: [
@@ -90,7 +91,9 @@ import { PipesModule } from './pipes/pipes.module';
 
     FontAwesomeModule,
 
-    PipesModule
+    PipesModule,
+
+    NgxAuthFirebaseUIModule
   ],
   declarations: [
     BigInputComponent,
@@ -134,7 +137,9 @@ import { PipesModule } from './pipes/pipes.module';
     BigInputActionComponent,
     RtlSupportDirective,
 
-    PipesModule
+    PipesModule,
+
+    NgxAuthFirebaseUIModule
   ]
 })
 export class SharedModule {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthProvider } from 'ngx-auth-firebaseui';
+import { NotificationService } from '../core.module';
 import * as authActions from './auth.actions';
 import { User } from './auth.models';
 
@@ -8,7 +9,7 @@ import { User } from './auth.models';
   selector: 'pedi-ya-login',
   template: `
     <ngx-auth-firebaseui 
-      (onSuccess)="onLoginSuccess($event)" (onError)="printError($event)"
+      (onSuccess)="onSuccess($event)"
       [providers]="[providers.EmailAndPassword, providers.Google]"
       [signInTabText]="'ngxauthfirebaseui.signInTabText' | translate"
       [signInCardTitleText]="'ngxauthfirebaseui.signInCardTitleText' | translate"
@@ -44,22 +45,19 @@ export class AuthComponent implements OnInit {
   public providers = AuthProvider;
 
   constructor(
-    private store: Store
+    private store: Store,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
   }
 
-  onLoginSuccess(event) {
+  onSuccess(event) {
       const user: User = {
         displayName: event.user.displayName,
         email: event.user.email
       }
       this.store.dispatch(authActions.authLogin({user}));
-  }
-
-  printError(event) {
-    console.error(event);
   }
 
 }

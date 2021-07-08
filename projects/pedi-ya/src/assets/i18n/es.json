@@ -91,5 +91,7 @@
    "ngxauthfirebaseui.resetPasswordInstructionsText": "Por favor, ingrese su dirección de correo electrónico para restablecer la contraseña",
    "ngxauthfirebaseui.emailConfirmationTitle": "¡Confirma tu dirección de correo electrónico!",
    "ngxauthfirebaseui.emailConfirmationText": "Se le ha enviado un correo electrónico de confirmación. Revise su bandeja de entrada y haga clic en el enlace 'Confirmar mi correo electrónico' para confirmar su dirección de correo electrónico.",
+   "ngxauthfirebaseui.error.userNotFound": "No hay ningún registro de usuario correspondiente a este identificador. Es posible que el usuario haya sido eliminado.",
+    "ngxauthfirebaseui.error.userAlreadyRegistered": "La dirección de correo electrónico ya está siendo utilizada por otra cuenta.",
    "pedi-ya.header.cart": "Ir al checkout"
 }

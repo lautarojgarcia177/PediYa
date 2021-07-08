@@ -92,5 +92,7 @@
    "ngxauthfirebaseui.resetPasswordInstructionsText": "Please fill in your email address for password reset",
    "ngxauthfirebaseui.emailConfirmationTitle": "Confirm your e-mail address!",
    "ngxauthfirebaseui.emailConfirmationText": "A confirmation e-mail has been sent to you. Check your inbox and click on the link 'Confirm my e-mail' to confirm your e-mail address.",
+   "ngxauthfirebaseui.error.userNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
+   "ngxauthfirebaseui.error.userAlreadyRegistered": "The email address is already in use by another account.",
    "pedi-ya.header.cart": "Ir al checkout"
   }
