@@ -90,14 +90,14 @@ mat-sidenav-container {
           a {
             transition: padding 0.5s;
             display: inline-block;
-            padding: 20px 5px;
+            padding: 5px;
 
             &:hover {
               text-decoration: none;
             }
 
             fa-icon {
-              font-size: 30px;
+              font-size: 20px;
               width: 35px;
             }
 
@@ -139,11 +139,6 @@ mat-sidenav-container {
         @media (min-width: map-get($grid-breakpoints, sm)) {
           .signature {
             position: relative;
-
-            a {
-              position: absolute;
-              right: 15px;
-            }
           }
         }
       }

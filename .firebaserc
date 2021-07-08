@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pediya-cde90": {
+      "hosting": {
+        "pedi-ya": [
+          "pediya-cde90"
+        ]
+      }
+    }
+  }
+}

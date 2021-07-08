@@ -19,6 +19,10 @@ import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
+import { map, pluck, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { selectOrders } from '../features/order/order.state';
+import { CartItem } from '../features/order/cart/cart.model';
 
 @Component({
   selector: 'pedi-ya-root',
@@ -36,7 +40,6 @@ export class AppComponent implements OnInit {
   navigation = [
     { link: 'order', label: 'pedi-ya.menu.order' },
     { link: 'about', label: 'pedi-ya.menu.about' },
-    { link: 'examples', label: 'pedi-ya.menu.examples' }
   ];
   navigationSideMenu = [
     ...this.navigation,
@@ -47,11 +50,13 @@ export class AppComponent implements OnInit {
   stickyHeader$: Observable<boolean>;
   language$: Observable<string>;
   theme$: Observable<string>;
+  amountOfOrderItems$: Observable<number>;
 
   constructor(
     private store: Store,
-    private storageService: LocalStorageService
-  ) {}
+    private storageService: LocalStorageService,
+    private router: Router
+  ) { }
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);
@@ -71,10 +76,17 @@ export class AppComponent implements OnInit {
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
+    this.amountOfOrderItems$ = this.store.select(selectOrders)
+      .pipe(
+        pluck('cart'),
+        pluck('items'),
+        map((cartItems: CartItem[]) => cartItems?.reduce(
+          (acc, curr) => acc += curr.amount, 0)),
+      );
   }
 
   onLoginClick() {
-    this.store.dispatch(authLogin());
+    this.router.navigate(['auth']);
   }
 
   onLogoutClick() {
@@ -84,4 +96,5 @@ export class AppComponent implements OnInit {
   onLanguageSelect({ value: language }) {
     this.store.dispatch(actionSettingsChangeLanguage({ language }));
   }
+
 }

@@ -10,7 +10,7 @@
           routerLinkActive="active">
           {{item.label | translate}}
         </a>
-        <a mat-list-item href="https://github.com/tomastrajan/pedi-ya" target="_blank" rel="noopener noreferrer">
+        <a mat-list-item href="https://github.com/lautarojgarcia177/PediYa" target="_blank" rel="noopener noreferrer">
           Github
         </a>
       </mat-nav-list>
@@ -59,6 +59,15 @@
             <fa-icon icon="cog"></fa-icon>
           </button>
 
+          <a *ngIf="amountOfOrderItems$ |async as amountOfOrderItems" [matTooltip]="'pedi-ya.header.cart' | translate"
+            matTooltipPosition="before"
+            mat-icon-button
+            class="link"
+            [routerLink]="['order', 'checkout']"
+            rel="noopener noreferrer">
+          <mat-icon [matBadge]="amountOfOrderItems" matBadgeColor="accent">shopping_cart</mat-icon>
+          </a>
+
           <a [matTooltip]="'pedi-ya.header.github' | translate"
              matTooltipPosition="before"
              mat-icon-button
@@ -84,31 +93,19 @@
 
       <div class="footer">
         <div class="row">
-          <div class="col-sm-12 links">
-            <a href="https://www.linkedin.com/in/lautaro-garcia-b19b75164/" target="_blank" rel="noopener noreferrer">
-              <fa-icon [icon]="['fab','linkedin']"></fa-icon>
-              <span>LinkedIn</span>
-            </a>
-            <a href="https://www.github.com/lautarojgarcia177" target="_blank" rel="noopener noreferrer">
-              <fa-icon [icon]="['fab','github']"></fa-icon>
-              <span>Github</span>
-            </a>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-12 signature">
-            <span class="year">{{year}}</span> - Made by Lautaro Garcia
-            <br class="d-block d-sm-none">
+            <span class="year">{{year}}</span> - Made by <a href="https://github.com/lautarojgarcia177" target="_blank">Lautaro Garcia</a>
+            <br class="d-block">
             <a [matTooltip]="'pedi-ya.footer.changelog' | translate"
                matTooltipPosition="before"
-               href="https://github.com/tomastrajan/pedi-ya/blob/master/CHANGELOG.md">
+               href="https://github.com/lautarojgarcia177/pedi-ya/blob/master/CHANGELOG.md">
               <fa-icon icon="rocket"></fa-icon>
               {{version}} <span *ngIf="!isProd">[{{envName}}]</span>
             </a>
           </div>
         </div>
+        <div class="row"></div>
       </div>
-
     </div>
 
   </mat-sidenav-container>
