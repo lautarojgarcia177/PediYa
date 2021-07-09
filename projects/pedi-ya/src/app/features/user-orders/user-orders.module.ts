@@ -9,20 +9,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../../shared/shared.module';
 import { environment } from '../../../environments/environment';
 
+import { FEATURE_NAME, reducers } from '../order/order.state';
+import { OrderEffects } from '../order/order.effects';
+import { CartEffects } from '../order/cart/cart.effects';
 import { UserOrdersRoutingModule } from './user-orders-routing.module';
-import { UserOrdersComponent } from './user-orders/user-orders.component';
-import { MenuListComponent } from '../order/menu-list/menu-list.component';
-import { RouterModule } from '@angular/router';
-import { UserOrdersListComponent } from './orders-list/user-orders-list.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { UserOrdersListComponent } from './user-orders-list/user-orders-list.component';
 import { UserOrdersService } from './user-orders.service';
-
-export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(
-    http,
-    `${environment.i18nPrefix}/assets/i18n/user-orders/`,
-    '.json'
-  );
-}
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -30,27 +23,12 @@ export function httpLoaderFactory(http: HttpClient) {
     LazyElementsModule,
     SharedModule,
     UserOrdersRoutingModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient]
-      },
-      isolate: true
-    }),
-    // StoreModule.forFeature(FEATURE_NAME, reducers),
-    // EffectsModule.forFeature([
-    //   OrderEffects,
-    //   CartEffects
-    // ])
+    NgxEchartsModule
   ],
   declarations: [
-    UserOrdersComponent,
-    UserOrdersListComponent,
+    UserOrdersListComponent
   ],
-  providers: [
-    UserOrdersService
-  ]
+  providers: [UserOrdersService]
 })
 export class UserOrdersModule {
   constructor() {}

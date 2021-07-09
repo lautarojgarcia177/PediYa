@@ -95,5 +95,7 @@
    "ngxauthfirebaseui.emailConfirmationText": "A confirmation e-mail has been sent to you. Check your inbox and click on the link 'Confirm my e-mail' to confirm your e-mail address.",
    "ngxauthfirebaseui.error.userNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
    "ngxauthfirebaseui.error.userAlreadyRegistered": "The email address is already in use by another account.",
-   "pedi-ya.header.cart": "Ir al checkout"
+   "pedi-ya.header.cart": "Go to checkout",
+   "pedi-ya.user-orders.orders-list.title": "Your Orders",
+   "pedi-ya.user-orders.orders-list.orders-over-time.title": "Your spendings over time"
   }

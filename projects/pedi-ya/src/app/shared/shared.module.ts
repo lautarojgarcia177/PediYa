@@ -61,7 +61,6 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
 import { PipesModule } from './pipes/pipes.module';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { RouterModule } from '@angular/router';
-import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   imports: [
@@ -97,7 +96,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
     PipesModule,
 
     NgxAuthFirebaseUIModule,
-    NgxEchartsModule
   ],
   declarations: [
     BigInputComponent,
@@ -144,8 +142,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 
     PipesModule,
 
-    NgxAuthFirebaseUIModule,
-    NgxEchartsModule
+    NgxAuthFirebaseUIModule
   ]
 })
 export class SharedModule {

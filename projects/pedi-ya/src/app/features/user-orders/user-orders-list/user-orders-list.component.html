@@ -13,8 +13,6 @@
     </div>
   </div>
   <div class="row" rtl>
-    <div class="col" *ngIf="userOrders$ | async as userOrders">
-      <div echarts [options]="chartOption" class="demo-chart"></div>
-    </div>
+      <div echarts [options]="userOrdersChart" class="demo-chart"></div>
   </div>
 </div>
