@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthGuardService } from './core/auth/auth-guard.service';
 import { AuthComponent } from './core/auth/auth.component';
 
 const routes: Routes = [
@@ -30,8 +31,16 @@ const routes: Routes = [
       )
   },
   {
+    path: 'user-orders',
+    loadChildren: () =>
+      import('./features/user-orders/user-orders.module').then(
+        (m) => m.UserOrdersModule
+      ),
+      canActivate: [AuthGuardService],
+  },
+  {
     path: '**',
-    redirectTo: 'about'
+    redirectTo: 'order'
   }
 ];
 

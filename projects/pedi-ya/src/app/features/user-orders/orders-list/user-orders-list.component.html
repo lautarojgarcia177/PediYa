@@ -1,0 +1,20 @@
+<style>
+  .demo-chart {
+  height: 400px;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 rtl class="main-heading">
+        {{ 'pedi-ya.user-orders.orders-list.title' | translate }}
+      </h1>
+    </div>
+  </div>
+  <div class="row" rtl>
+    <div class="col" *ngIf="userOrders$ | async as userOrders">
+      <div echarts [options]="chartOption" class="demo-chart"></div>
+    </div>
+  </div>
+</div>

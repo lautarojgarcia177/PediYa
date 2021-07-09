@@ -12,6 +12,7 @@ import { CartItem, CartState } from "../cart/cart.model";
 import { AppState } from "../../../core/core.state";
 import { concatLatestFrom } from "@ngrx/effects";
 
+
 class MenuWithCart implements Menu {
     id: string;
     name: string;

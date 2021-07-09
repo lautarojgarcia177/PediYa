@@ -11,11 +11,11 @@
 <div class="row">
   <div class="col-12">
     <h1 rtl class="main-heading">
-      {{ 'pedi-ya.order.menu-list.title' | translate }}
+      {{ 'pedi-ya.user-orders.orders-list.title' | translate }}
     </h1>
   </div>
 </div>
-<div class="row" [ngClass]="routeAnimationsElements" rtl>
+<div class="row" rtl>
   <div *ngIf="menusAndStore$ | async" class="col-12 d-flex flex-wrap justify-content-between">
         <mat-card *ngFor="let menu of menusWithCart" class="animate__animated animate__fadeIn mb-3">
           <mat-card-header>

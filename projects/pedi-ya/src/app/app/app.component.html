@@ -46,7 +46,7 @@
           <button *ngIf="(isAuthenticated$ | async)"
                   mat-icon-button
                   [matMenuTriggerFor]="toolbarUserMenu">
-            <fa-icon icon="user-circle"></fa-icon>
+            <ngx-auth-firebaseui-avatar></ngx-auth-firebaseui-avatar>
           </button>
           <mat-menu #toolbarUserMenu="matMenu">
             <button mat-menu-item (click)="onLogoutClick()">

@@ -78,6 +78,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { AuthComponent } from './auth/auth.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 export {
   TitleService,
@@ -174,7 +175,11 @@ export function httpLoaderFactory(http: HttpClient) {
         useFactory: httpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
     })
+
   ],
   declarations: [
     AuthComponent
@@ -211,7 +216,8 @@ export function httpLoaderFactory(http: HttpClient) {
 
     // 3rd party
     FontAwesomeModule,
-    TranslateModule
+    TranslateModule,
+    NgxEchartsModule
   ]
 })
 export class CoreModule {

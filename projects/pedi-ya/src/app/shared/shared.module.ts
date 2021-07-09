@@ -60,11 +60,13 @@ import { BigInputActionComponent } from './big-input/big-input-action/big-input-
 import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
 import { PipesModule } from './pipes/pipes.module';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
 
     TranslateModule,
 
@@ -104,6 +106,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
 
     TranslateModule,
 
