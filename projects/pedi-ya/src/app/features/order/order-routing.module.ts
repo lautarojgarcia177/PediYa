@@ -6,6 +6,8 @@ import { AuthGuardService } from '../../core/core.module';
 import { OrderComponent } from './order/order.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { OrderCancelledComponent } from './order-cancelled/order-cancelled.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,16 @@ const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         data: { title: 'pedi-ya.order.checkout.title' }
+      },
+      {
+        path: 'order-confirmed',
+        component: OrderConfirmedComponent,
+        data: { title: 'pedi-ya.order.order-confirmed.title' }
+      },
+      {
+        path: 'order-cancelled',
+        component: OrderCancelledComponent,
+        data: { title: 'pedi-ya.order.order-cancelled.title' }
       },
     ]
   }

@@ -54,5 +54,9 @@
   "pedi-ya.order.checkout.orderConfirmed": "The order has been confirmed",
   "pedi-ya.order.checkout.cancelOrder": "Cancel order",
   "pedi-ya.order.checkout.orderCancelled": "The order has been cancelded",
-  "pedi-ya.order.checkout.noItemsInCart": "There's no items in the order"
+  "pedi-ya.order.checkout.noItemsInCart": "There's no items in the order",
+  "pedi-ya.order.order-confirmed.title": "Order confirmed",
+  "pedi-ya.order.order-confirmed.description": "Your order should arrive soon",
+  "pedi-ya.order.order-cancelled.title": "Order cancelled",
+  "pedi-ya.order.order-cancelled.description": "Your has been cancelled"
 }

@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   languages = ['en', 'es'];
   navigation = [
     { link: 'order', label: 'pedi-ya.menu.order' },
+    { link: 'user-orders', label: 'pedi-ya.menu.user-orders' },
     { link: 'about', label: 'pedi-ya.menu.about' },
   ];
   navigationSideMenu = [

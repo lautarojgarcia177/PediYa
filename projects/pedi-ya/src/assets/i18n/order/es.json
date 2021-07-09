@@ -28,5 +28,9 @@
   "pedi-ya.order.checkout.orderConfirmed": "Pedido confirmado",
   "pedi-ya.order.checkout.cancelOrder": "Cancelar pedido",
   "pedi-ya.order.checkout.orderCancelled": "Pedido cancelado",
-  "pedi-ya.order.checkout.noItemsInCart": "No hay ningun menu en el pedido"
+  "pedi-ya.order.checkout.noItemsInCart": "No hay ningun menu en el pedido",
+  "pedi-ya.order.order-confirmed.title": "Orden confirmada",
+  "pedi-ya.order.order-confirmed.description": "Tu pedido debería llegar en breve",
+  "pedi-ya.order.order-cancelled.title": "Orden cancelada",
+  "pedi-ya.order.order-cancelled.description": "Tu pedido fue cancelado"
 }

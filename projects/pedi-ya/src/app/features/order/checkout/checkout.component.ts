@@ -20,6 +20,7 @@ import { selectOrders, State } from '../order.state';
 import { pluck, tap } from 'rxjs/operators';
 import { CartState } from '../cart/cart.model';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pedi-ya-order',
@@ -34,7 +35,7 @@ export class CheckoutComponent implements OnInit {
 
   cart$ = this.store.select(selectOrders).pipe(pluck('cart'));
 
-  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService) { }
+  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -46,6 +47,7 @@ export class CheckoutComponent implements OnInit {
     this.translate.get('pedi-ya.order.checkout.orderConfirmed').subscribe(translation =>
       this.notificationService.success(translation)
     );
+    this.router.navigate(['order', 'order-confirmed']);
   }
 
   onCancelOrder() {
@@ -53,6 +55,7 @@ export class CheckoutComponent implements OnInit {
     this.translate.get('pedi-ya.order.checkout.orderCancelled').subscribe(translation =>
       this.notificationService.info(translation)
     )
+    this.router.navigate(['order', 'order-cancelled']);
   }
 
 }

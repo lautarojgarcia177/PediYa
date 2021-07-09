@@ -17,6 +17,8 @@ import { MenuListComponent } from './menu-list/menu-list.component';
 import { OrderService } from './order.service';
 import { CartEffects } from './cart/cart.effects';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { OrderCancelledComponent } from './order-cancelled/order-cancelled.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
@@ -49,7 +51,9 @@ export function httpLoaderFactory(http: HttpClient) {
   declarations: [
     OrderComponent,
     MenuListComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrderConfirmedComponent,
+    OrderCancelledComponent,
   ],
   providers: [OrderService]
 })
