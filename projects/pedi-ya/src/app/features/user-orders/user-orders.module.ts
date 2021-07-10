@@ -16,6 +16,8 @@ import { UserOrdersRoutingModule } from './user-orders-routing.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { UserOrdersListComponent } from './user-orders-list/user-orders-list.component';
 import { UserOrdersService } from './user-orders.service';
+import { UserOrderDetailComponent } from './user-orders-list/user-order-detail.component';
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -26,7 +28,8 @@ import { UserOrdersService } from './user-orders.service';
     NgxEchartsModule
   ],
   declarations: [
-    UserOrdersListComponent
+    UserOrdersListComponent,
+    UserOrderDetailComponent
   ],
   providers: [UserOrdersService]
 })

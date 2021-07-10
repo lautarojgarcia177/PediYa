@@ -26,7 +26,8 @@ export class UserOrdersListComponent implements OnInit {
     private store: Store<AppState>,
     private ordersService: UserOrdersService,
     private changeDetectorRef: ChangeDetectorRef,
-    private translate: TranslateService
+    private translate: TranslateService,
+    // private componentFactory: ComponentFactory
   ) {
   }
 
@@ -61,7 +62,10 @@ export class UserOrdersListComponent implements OnInit {
             trigger: 'item',
             formatter: function (params) {
               console.log(userOrders[params.seriesIndex]);
-              return JSON.stringify(userOrders[params.seriesIndex]);
+              const data = userOrders[params.seriesIndex];
+              const fakeData = [{ title: 'pruimero'}, { title: 'segundo'}];
+              // const template: 
+              return '<p *ngFor="let item of fakeData">{{item.title}}</p>';
           }
           },
           xAxis: {
