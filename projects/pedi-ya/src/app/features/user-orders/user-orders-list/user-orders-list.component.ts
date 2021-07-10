@@ -27,13 +27,22 @@ export class UserOrdersListComponent implements OnInit {
     private ordersService: UserOrdersService,
     private changeDetectorRef: ChangeDetectorRef,
     private translate: TranslateService,
-    // private componentFactory: ComponentFactory
   ) {
   }
 
   ngOnInit(): void {
-    this.userOrders$.pipe(tap(console.warn)).subscribe(userOrders => {
+    this.userOrders$.pipe(tap(console.info)).subscribe(userOrders => {
       this.userOrders = userOrders;
+      let menus = [];
+      this.userOrders.forEach(userOrder => 
+        userOrder.cart.items.forEach(cartItem => {
+          menus.push(cartItem.menu.id);
+        })
+      );
+      console.log('menus', menus);
+      menus.forEach(menuId => {
+        this.ordersService.getMenu(menuId).subscribe(menu => console.log('menuuuuuuuuuuuuu', menu));
+      })
       this.draw();
       this.changeDetectorRef.detectChanges();
     });
@@ -63,9 +72,10 @@ export class UserOrdersListComponent implements OnInit {
             formatter: function (params) {
               console.log(userOrders[params.seriesIndex]);
               const data = userOrders[params.seriesIndex];
-              const fakeData = [{ title: 'pruimero'}, { title: 'segundo'}];
-              // const template: 
-              return '<p *ngFor="let item of fakeData">{{item.title}}</p>';
+              let template = '<div>';
+              data.cart.items.forEach(cartItem => template += `${cartItem.menu.name}` + '<br>');
+              template += '</div>';
+              return template;
           }
           },
           xAxis: {
