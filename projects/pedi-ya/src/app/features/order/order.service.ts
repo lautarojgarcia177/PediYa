@@ -29,7 +29,7 @@ export class OrderService {
       map(([order, auth]) => 
         ({
           cart: order.cart,
-          timestamp: Math.floor(Date.now() / 1000),
+          timestamp: new Date(),
           user: auth.user.id
         })
       ),

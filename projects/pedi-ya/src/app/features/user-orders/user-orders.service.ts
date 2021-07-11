@@ -7,21 +7,14 @@ import { UserOrder } from "./user-orders.models";
 
 @Injectable()
 export class UserOrdersService {
-  
-    private ordersCollection: AngularFirestoreCollection;
-    public orders$: Observable<UserOrder[]>;
 
   constructor(private afs: AngularFirestore) {
-    this.ordersCollection = this.afs.collection<UserOrder[]>('orders');
-    this.orders$ = this.ordersCollection.get().pipe(
-        map((querySnapshot) => querySnapshot.docs.map(doc => doc.data())),
-        map(userOrders => userOrders.map(userOrder => ({
-          ...userOrder,
-          timestamp: userOrder.timestamp.seconds
-        })
-        )),
-        map(userOrders => userOrders as UserOrder[])        
-    );
+  }
+
+  public getOrders(): Observable<any[]> {
+    return this.afs.collection<UserOrder[]>('orders').get().pipe(
+      map((querySnapshot) => querySnapshot.docs.map(doc => doc.data())), 
+  );
   }
 
   public getMenu(menuId: string): Observable<Menu> {
