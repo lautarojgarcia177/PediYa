@@ -4,7 +4,7 @@ import { UserOrder } from "../user-orders.models";
 import { EChartsOption } from "echarts";
 import { DatePipe } from "@angular/common";
 import { TranslateService } from "@ngx-translate/core";
-import { tap } from "rxjs/operators";
+import { take, tap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../../core/core.state";
 import { selectSettingsLanguage } from "../../../core/settings/settings.selectors";
@@ -13,15 +13,13 @@ import { Subscription } from "rxjs";
 @Component({
   selector: 'pedi-ya-user-orders-list',
   templateUrl: './user-orders-list.component.html',
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserOrdersListComponent implements OnInit {
 
-  
+  languageChangeSubscription: Subscription;
   userOrdersSubscription: Subscription;
   userOrders: UserOrder[];
-  
+
   userOrdersChart: EChartsOption;
   totalSpending: number;
 
@@ -37,8 +35,10 @@ export class UserOrdersListComponent implements OnInit {
     this.userOrdersSubscription = this.ordersService.getOrders().pipe(tap(console.info)).subscribe(userOrders => {
       this.userOrders = userOrders;
       this.draw();
-      this.changeDetectorRef.detectChanges();
     });
+    this.languageChangeSubscription = this.store.select(selectSettingsLanguage).subscribe(() => {
+      this.draw();
+    })
   }
 
   ngOnDestroy(): void {
@@ -46,16 +46,20 @@ export class UserOrdersListComponent implements OnInit {
   }
 
   private draw() {
-   this.drawSpendingsOverTime();
-   this.drawTotalSpending();
+    console.log('been heresadsa');
+    this.drawSpendingsOverTime();
+    this.drawTotalSpending();
+    this.changeDetectorRef.detectChanges();
   }
 
   private drawSpendingsOverTime(): void {
+    this.userOrdersChart = {};
+    this.changeDetectorRef.detectChanges();
     let xAxisData = [];
     let seriesData = [];
-    this.store.select(selectSettingsLanguage).subscribe(language => {
+    this.store.select(selectSettingsLanguage).pipe(take(1)).subscribe(language => {
       const datePipe = new DatePipe('en-US');
-      this.userOrders.forEach(userOrder => {
+      this.userOrders?.forEach(userOrder => {
         let dateFormat: string = 'MM/dd/yyyy';
         if (language === 'es') dateFormat = 'dd/MM/yyyy';
         if (language === 'en') dateFormat = 'MM/dd/yyyy';
@@ -64,7 +68,8 @@ export class UserOrdersListComponent implements OnInit {
       });
       this.translate.get([
         'pedi-ya.user-orders.orders-list.orders-over-time.title',
-        'pedi-ya.user-orders.user-orders-list.amount'
+        'pedi-ya.user-orders.user-orders-list.amount',
+        'pedi-ya.user-orders.user-orders-list.date',
       ]).subscribe(translations => {
         const userOrders = this.userOrders;
         this.userOrdersChart = {
@@ -87,7 +92,7 @@ export class UserOrdersListComponent implements OnInit {
                 <tbody>
                   <tr>
               `;
-              data.cart.items.forEach(cartItem =>
+              data.cart?.items?.forEach(cartItem =>
                 template += `
                   <tr>
                     <td>${cartItem.menu.name}</td>
@@ -96,16 +101,20 @@ export class UserOrdersListComponent implements OnInit {
                   </tr>
                 `
               );
-              template += `</tbody><tfoot>Total: $${data.cart.total}</tfoot></table>`;
+              template += `</tbody><tfoot>Total: $${data?.cart?.total}</tfoot></table>`;
               return template;
             }
           },
           xAxis: {
             type: 'category',
-            data: xAxisData
+            data: xAxisData,
+            name: translations['pedi-ya.user-orders.user-orders-list.date']
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              formatter: '${value}'
+            },
           },
           series: [
             {
@@ -119,7 +128,7 @@ export class UserOrdersListComponent implements OnInit {
   }
 
   private drawTotalSpending(): void {
-    this.totalSpending = this.userOrders.reduce((acc, curr) => acc + curr?.cart.total, 0);
+    this.totalSpending = this.userOrders?.reduce((acc, curr) => acc + curr?.cart.total, 0);
   }
 
 }
