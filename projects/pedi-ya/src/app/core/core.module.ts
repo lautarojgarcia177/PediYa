@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   HttpClientModule,
   HttpClient,
@@ -32,6 +32,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 
 import { environment } from '../../environments/environment';
 
+// Spinner
+import { NgxSpinnerModule } from "ngx-spinner";
+
 import {
   AppState,
   reducers,
@@ -52,6 +55,7 @@ import { AppErrorHandler } from './error-handler/app-error-handler.service';
 import { CustomSerializer } from './router/custom-serializer';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { HttpErrorInterceptor } from './http-interceptors/http-error.interceptor';
+import { HttpSpinnerInterceptor } from './http-interceptors/http-spinner-interceptor';
 import { GoogleAnalyticsEffects } from './google-analytics/google-analytics.effects';
 import { NotificationService } from './notifications/notification.service';
 import { SettingsEffects } from './settings/settings.effects';
@@ -79,6 +83,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { AuthComponent } from './auth/auth.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { UiEffects } from './ui/ui.effects';
 
 export {
   TitleService,
@@ -159,7 +164,8 @@ export function httpLoaderFactory(http: HttpClient) {
     EffectsModule.forRoot([
       AuthEffects,
       SettingsEffects,
-      GoogleAnalyticsEffects
+      GoogleAnalyticsEffects,
+      UiEffects
     ]),
     environment.production
       ? []
@@ -178,7 +184,8 @@ export function httpLoaderFactory(http: HttpClient) {
     }),
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
-    })
+    }),
+    NgxSpinnerModule
 
   ],
   declarations: [
@@ -186,6 +193,7 @@ export function httpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpSpinnerInterceptor, multi: true },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: RouterStateSerializer, useClass: CustomSerializer },
   ],
@@ -217,8 +225,10 @@ export function httpLoaderFactory(http: HttpClient) {
     // 3rd party
     FontAwesomeModule,
     TranslateModule,
-    NgxEchartsModule
-  ]
+    NgxEchartsModule,
+    NgxSpinnerModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {
   constructor(

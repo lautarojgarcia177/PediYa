@@ -8,6 +8,7 @@ import { Menu } from "./order.models";
 import * as cartActions from "./cart/cart.actions";
 import { selectOrder } from "./order.state";
 import { selectAuth } from "../../core/core.module";
+import * as uiActions from '../../core/ui/ui.actions';
 
 @Injectable()
 export class OrderService {
@@ -33,8 +34,12 @@ export class OrderService {
           user: auth.user.id
         })
       ),
-      switchMap(document => this.afs.collection('orders').doc().set(document)),
+      switchMap(document => {
+        this.store.dispatch(uiActions.showSpinner())
+        return this.afs.collection('orders').doc().set(document);
+      }),
       take(1),
+      tap(() => this.store.dispatch(uiActions.hideSpinner())),
       tap(() => this.store.dispatch(cartActions.resetCart()))
     )
   }

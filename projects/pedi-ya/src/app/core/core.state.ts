@@ -14,11 +14,14 @@ import { authReducer } from './auth/auth.reducer';
 import { RouterStateUrl } from './router/router.state';
 import { settingsReducer } from './settings/settings.reducer';
 import { SettingsState } from './settings/settings.model';
+import { uiReducer } from './ui/ui.reducer';
+import { UiState } from './ui/ui.models';
 
 export const reducers: ActionReducerMap<AppState> = {
   auth: authReducer,
   settings: settingsReducer,
-  router: routerReducer
+  router: routerReducer,
+  ui: uiReducer
 };
 
 export const metaReducers: MetaReducer<AppState>[] = [
@@ -40,8 +43,12 @@ export const selectSettingsState =
 export const selectRouterState =
   createFeatureSelector<AppState, RouterReducerState<RouterStateUrl>>('router');
 
+export const selectUiState = 
+  createFeatureSelector<AppState, UiState>('ui');
+
 export interface AppState {
   auth: AuthState;
   settings: SettingsState;
   router: RouterReducerState<RouterStateUrl>;
+  ui: UiState;
 }

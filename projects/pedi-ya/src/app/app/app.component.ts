@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { environment as env } from '../../environments/environment';
 
 import {
-  authLogin,
   authLogout,
   routeAnimations,
   LocalStorageService,
@@ -56,7 +55,7 @@ export class AppComponent implements OnInit {
   constructor(
     private store: Store,
     private storageService: LocalStorageService,
-    private router: Router
+    private router: Router,
   ) { }
 
   private static isIEorEdgeOrSafari() {

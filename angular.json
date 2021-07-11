@@ -34,13 +34,14 @@
               }
             ],
             "styles": [
-              "projects/pedi-ya/src/styles-app-loading.scss",
               "projects/pedi-ya/src/styles.scss",
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/animate.css/animate.min.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -121,13 +122,14 @@
               }
             ],
             "styles": [
-              "projects/pedi-ya/src/styles-app-loading.scss",
               "projects/pedi-ya/src/styles.scss",
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/animate.css/animate.min.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "test": {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { UserOrdersService } from "../user-orders.service";
 import { UserOrder } from "../user-orders.models";
 import { EChartsOption } from "echarts";
@@ -13,6 +13,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: 'pedi-ya-user-orders-list',
   templateUrl: './user-orders-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserOrdersListComponent implements OnInit {
 
@@ -32,21 +33,20 @@ export class UserOrdersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userOrdersSubscription = this.ordersService.getOrders().pipe(tap(console.info)).subscribe(userOrders => {
+    this.userOrdersSubscription = this.ordersService.getOrders().subscribe(userOrders => {
       this.userOrders = userOrders;
       this.draw();
     });
     this.languageChangeSubscription = this.store.select(selectSettingsLanguage).subscribe(() => {
       this.draw();
     })
-  }
+}
 
   ngOnDestroy(): void {
     this.userOrdersSubscription.unsubscribe();
   }
 
   private draw() {
-    console.log('been heresadsa');
     this.drawSpendingsOverTime();
     this.drawTotalSpending();
     this.changeDetectorRef.detectChanges();
