@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { iif, Observable, throwError } from "rxjs";
 import { map, switchMap, take, tap, withLatestFrom } from "rxjs/operators";
 import { AppState } from "../../core/core.state";
 import { Menu } from "./order.models";
@@ -9,6 +9,7 @@ import * as cartActions from "./cart/cart.actions";
 import { selectOrder } from "./order.state";
 import { selectAuth } from "../../core/core.module";
 import * as uiActions from '../../core/ui/ui.actions';
+import { AuthState } from "../../core/auth/auth.models";
 
 @Injectable()
 export class OrderService {
@@ -24,7 +25,8 @@ export class OrderService {
   }
 
   public confirmOrder(): Observable<any> {
-    return this.store.select(selectOrder).pipe(
+
+    const confirmOrder$ = this.store.select(selectOrder).pipe(
       withLatestFrom(this.store.select(selectAuth)),
       take(1),
       map(([order, auth]) => 
@@ -41,7 +43,13 @@ export class OrderService {
       take(1),
       tap(() => this.store.dispatch(uiActions.hideSpinner())),
       tap(() => this.store.dispatch(cartActions.resetCart()))
-    )
+    );
+
+    // Checks if user entered as guest
+    return this.store.select(selectAuth).pipe(
+      switchMap(auth => iif(() => !!auth.user.displayName, confirmOrder$, throwError('Not a registered user')))
+    );
+
   }
 
 }

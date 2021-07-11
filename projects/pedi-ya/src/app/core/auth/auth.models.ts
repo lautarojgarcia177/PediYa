@@ -1,6 +1,7 @@
 export interface AuthState {
   isAuthenticated: boolean;
-  user: User
+  user: User,
+  loginRedirectRoute: string;
 }
 
 export interface User {

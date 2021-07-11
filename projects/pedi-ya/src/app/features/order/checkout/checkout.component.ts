@@ -1,10 +1,12 @@
 import { Store } from '@ngrx/store';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as cartActions from '../cart/cart.actions';
+import * as authActions from '../../../core/auth/auth.actions';
 
 import {
   AppState,
   NotificationService,
+  selectSettingsLanguage,
 } from '../../../core/core.module';
 
 import { selectOrder } from '../order.state';
@@ -23,7 +25,7 @@ export class CheckoutComponent {
 
   cart$ = this.store.select(selectOrder).pipe(pluck('cart'));
 
-  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService, private router: Router, private orderService: OrderService) { }
+  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService, private router: Router, private orderService: OrderService, private changeDetectorRef: ChangeDetectorRef) { }
 
   displayedColumns = ['name', 'amount', 'price', 'subtotal'];
 
@@ -34,6 +36,10 @@ export class CheckoutComponent {
           this.notificationService.success(translation)
         );
         this.router.navigate(['order', 'order-confirmed']);
+      },
+      // If no logged user, redirect to login
+      () => {
+        this.store.dispatch(authActions.redirectToLogin({ loginRedirectRoute: '' }))
       }
     )
   }

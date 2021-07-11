@@ -28,7 +28,6 @@ const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         data: { title: 'pedi-ya.order.checkout.title' },
-        canActivate: [AuthGuardService],
       },
       {
         path: 'order-confirmed',

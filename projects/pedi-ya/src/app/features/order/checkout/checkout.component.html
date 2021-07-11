@@ -13,25 +13,25 @@
                     <table mat-table [dataSource]="cart.items">
 
                     <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Menu </th>
+                        <th mat-header-cell *matHeaderCellDef> {{'pedi-ya.order.checkout.displayedColumns.name' | translate}} </th>
                         <td mat-cell *matCellDef="let cartItem"> {{cartItem.menu.name}} </td>
                     <td mat-footer-cell *matFooterCellDef> Total </td>
                     </ng-container>
                 
                     <ng-container matColumnDef="amount">
-                        <th mat-header-cell *matHeaderCellDef> Amount </th>
+                        <th mat-header-cell *matHeaderCellDef> {{'pedi-ya.order.checkout.displayedColumns.amount' | translate}} </th>
                         <td mat-cell *matCellDef="let cartItem"> {{cartItem.amount}} </td>
                         <td mat-footer-cell *matFooterCellDef>  </td>
                     </ng-container>
 
                     <ng-container matColumnDef="price">
-                        <th mat-header-cell *matHeaderCellDef> Price </th>
+                        <th mat-header-cell *matHeaderCellDef> {{'pedi-ya.order.checkout.displayedColumns.price' | translate}} </th>
                         <td mat-cell *matCellDef="let cartItem"> {{cartItem.menu.price | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef>  </td> 
                     </ng-container>
 
                     <ng-container matColumnDef="subtotal">
-                        <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+                        <th mat-header-cell *matHeaderCellDef> {{'pedi-ya.order.checkout.displayedColumns.subtotal' | translate}} </th>
                         <td mat-cell *matCellDef="let cartItem"> {{cartItem.subtotal | currency}} </td>
                         <td mat-footer-cell *matFooterCellDef> {{cart.total | currency}} </td>
                     </ng-container>
