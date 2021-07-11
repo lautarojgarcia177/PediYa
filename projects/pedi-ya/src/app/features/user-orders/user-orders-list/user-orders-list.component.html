@@ -15,4 +15,7 @@
   <div class="row" rtl>
       <div echarts [options]="userOrdersChart" class="demo-chart"></div>
   </div>
+  <div class="row" rtl>
+    <p>{{'pedi-ya.user-orders.user-orders-list.totalSpendingDescription' |translate}}: {{totalSpending | currency }}</p>
+</div>
 </div>

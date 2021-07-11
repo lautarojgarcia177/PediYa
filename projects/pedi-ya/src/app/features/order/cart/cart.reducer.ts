@@ -14,12 +14,7 @@ function calculateSubtotal(cartItem: CartItem): number {
 }
 
 function calculateTotal(cartItems: CartItem[]): number {
-    return cartItems.reduce(
-        (acc, curr) => {
-            return acc + curr?.subtotal;
-        },
-        0
-    );
+    return cartItems.reduce((acc, curr) => acc + curr?.subtotal, 0);
 }
 
 function addItemToCart(state: CartState, menu: Menu) {

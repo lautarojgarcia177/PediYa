@@ -18,10 +18,12 @@ import { Subscription } from "rxjs";
 })
 export class UserOrdersListComponent implements OnInit {
 
-  userOrdersChart: EChartsOption;
-
+  
   userOrdersSubscription: Subscription;
   userOrders: UserOrder[];
+  
+  userOrdersChart: EChartsOption;
+  totalSpending: number;
 
   constructor(
     private store: Store<AppState>,
@@ -44,6 +46,11 @@ export class UserOrdersListComponent implements OnInit {
   }
 
   private draw() {
+   this.drawSpendingsOverTime();
+   this.drawTotalSpending();
+  }
+
+  private drawSpendingsOverTime(): void {
     let xAxisData = [];
     let seriesData = [];
     this.store.select(selectSettingsLanguage).subscribe(language => {
@@ -109,7 +116,10 @@ export class UserOrdersListComponent implements OnInit {
         };
       })
     });
+  }
 
+  private drawTotalSpending(): void {
+    this.totalSpending = this.userOrders.reduce((acc, curr) => acc + curr?.cart.total, 0);
   }
 
 }

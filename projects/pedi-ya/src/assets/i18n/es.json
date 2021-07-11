@@ -97,5 +97,6 @@
    "pedi-ya.header.cart": "Ir al checkout",
    "pedi-ya.user-orders.orders-list.title": "Tus pedidos",
    "pedi-ya.user-orders.orders-list.orders-over-time.title": "Tus gastos a lo largo del tiempo",
-   "pedi-ya.user-orders.user-orders-list.amount": "Cantidad"
+   "pedi-ya.user-orders.user-orders-list.amount": "Cantidad",
+   "pedi-ya.user-orders.user-orders-list.totalSpendingDescription": "Su gasto total desde su promer orden es de"
 }
