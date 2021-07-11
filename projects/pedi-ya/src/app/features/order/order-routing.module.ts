@@ -27,17 +27,20 @@ const routes: Routes = [
       {
         path: 'checkout',
         component: CheckoutComponent,
-        data: { title: 'pedi-ya.order.checkout.title' }
+        data: { title: 'pedi-ya.order.checkout.title' },
+        canActivate: [AuthGuardService],
       },
       {
         path: 'order-confirmed',
         component: OrderConfirmedComponent,
-        data: { title: 'pedi-ya.order.order-confirmed.title' }
+        data: { title: 'pedi-ya.order.order-confirmed.title' },
+        canActivate: [AuthGuardService],
       },
       {
         path: 'order-cancelled',
         component: OrderCancelledComponent,
-        data: { title: 'pedi-ya.order.order-cancelled.title' }
+        data: { title: 'pedi-ya.order.order-cancelled.title' },
+        canActivate: [AuthGuardService],
       },
     ]
   }

@@ -36,15 +36,8 @@ export class AppComponent implements OnInit {
   year = new Date().getFullYear();
   logo = 'assets/logo.png';
   languages = ['en', 'es'];
-  navigation = [
-    { link: 'order', label: 'pedi-ya.menu.order' },
-    { link: 'user-orders', label: 'pedi-ya.menu.user-orders' },
-    { link: 'about', label: 'pedi-ya.menu.about' },
-  ];
-  navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'pedi-ya.menu.settings' }
-  ];
+  navigation = [];
+  navigationSideMenu = [];
 
   isAuthenticated$: Observable<boolean>;
   stickyHeader$: Observable<boolean>;
@@ -83,6 +76,34 @@ export class AppComponent implements OnInit {
         map((cartItems: CartItem[]) => cartItems?.reduce(
           (acc, curr) => acc += curr.amount, 0)),
       );
+
+      this.initNavbarItems()
+  }
+
+  private initNavbarItems(): void {
+    this.isAuthenticated$.subscribe(isAuthenticated => {
+      console.log('is auth', isAuthenticated);
+      if(isAuthenticated) {
+        this.navigation = [
+          { link: 'order', label: 'pedi-ya.menu.order' },
+          { link: 'user-orders', label: 'pedi-ya.menu.user-orders' },
+          { link: 'about', label: 'pedi-ya.menu.about' },
+        ];
+        this.navigationSideMenu = [
+          ...this.navigation,
+          { link: 'settings', label: 'pedi-ya.menu.settings' }
+        ];
+      } else {
+        this.navigation = [
+          { link: 'order', label: 'pedi-ya.menu.order' },
+          { link: 'about', label: 'pedi-ya.menu.about' },
+        ];
+        this.navigationSideMenu = [
+          ...this.navigation,
+          { link: 'settings', label: 'pedi-ya.menu.settings' }
+        ];
+      }
+    });
   }
 
   onLoginClick() {

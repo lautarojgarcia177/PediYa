@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ofType, createEffect, Actions } from '@ngrx/effects';
-import { tap, withLatestFrom } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 import { authLogin, authLogout } from './auth.actions';
+
+import * as cartActions from '../../features/order/cart/cart.actions';
 
 export const AUTH_KEY = 'AUTH';
 
@@ -37,9 +39,9 @@ export class AuthEffects {
           this.localStorageService.setItem(AUTH_KEY, {
             isAuthenticated: false
           });
-        })
-      ),
-    { dispatch: false }
+        }),
+        map(() => cartActions.resetCart())
+      )
   );
 
   constructor(
