@@ -31,7 +31,8 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-auth-firebaseui/assets/",
                 "output": "./assets/"
-              }
+              },
+              "projects/pedi-ya/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/pedi-ya/src/styles.scss",
@@ -41,7 +42,9 @@
             ],
             "scripts": [
 
-            ]
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "projects/pedi-ya/ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -119,7 +122,8 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-auth-firebaseui/assets/",
                 "output": "./assets/"
-              }
+              },
+              "projects/pedi-ya/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/pedi-ya/src/styles.scss",
