@@ -64,7 +64,7 @@
              matTooltipPosition="before"
              mat-icon-button
              class="link d-none d-sm-inline"
-             href="https://github.com/tomastrajan/pedi-ya"
+             href="https://github.com/lautarojgarcia177/pedi-ya"
              target="_blank" rel="noopener noreferrer">
             <fa-icon [icon]="['fab','github']"></fa-icon>
           </a>
@@ -81,7 +81,9 @@
 
       <div class="content" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data.title">
         <router-outlet #o="outlet"></router-outlet>
-        <ngx-spinner type="la-ball-spin-clockwise" [color]=""></ngx-spinner>
+        <ngx-spinner type="square-jelly-box">
+          {{ 'pedi-ya.loading' |translate }}...
+        </ngx-spinner>
       </div>
 
       <div class="footer">

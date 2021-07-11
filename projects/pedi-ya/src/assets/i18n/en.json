@@ -100,5 +100,6 @@
    "pedi-ya.user-orders.orders-list.orders-over-time.title": "Your spendings over time",
    "pedi-ya.user-orders.user-orders-list.amount": "Amount",
    "pedi-ya.user-orders.user-orders-list.date": "Date",
-   "pedi-ya.user-orders.user-orders-list.totalSpendingDescription": "Your total spendings since first order is"
+   "pedi-ya.user-orders.user-orders-list.totalSpendingDescription": "Your total spendings since first order is",
+   "pedi-ya.loading": "Loading"
   }
