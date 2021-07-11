@@ -34,15 +34,12 @@ export class UserOrdersListComponent implements OnInit {
     this.userOrders$.pipe(tap(console.info)).subscribe(userOrders => {
       this.userOrders = userOrders;
       let menus = [];
-      this.userOrders.forEach(userOrder => 
+      this.userOrders.forEach(userOrder =>
         userOrder.cart.items.forEach(cartItem => {
-          menus.push(cartItem.menu.id);
+          this.ordersService.getMenu(cartItem.menu.id).subscribe(menu => cartItem.menu = menu);
         })
       );
-      console.log('menus', menus);
-      menus.forEach(menuId => {
-        this.ordersService.getMenu(menuId).subscribe(menu => console.log('menuuuuuuuuuuuuu', menu));
-      })
+      console.log(this.userOrders);
       this.draw();
       this.changeDetectorRef.detectChanges();
     });
@@ -72,11 +69,24 @@ export class UserOrdersListComponent implements OnInit {
             formatter: function (params) {
               console.log(userOrders[params.seriesIndex]);
               const data = userOrders[params.seriesIndex];
-              let template = '<div>';
-              data.cart.items.forEach(cartItem => template += `${cartItem.menu.name}` + '<br>');
-              template += '</div>';
+              let template = `
+              <table class="table table-sm text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">Menu</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                  </tr>  
+                </thead>
+                <tbody>
+                  <tr>
+              `;
+              data.cart.items.forEach(cartItem =>
+                template += `<td>${cartItem.menu.name}</td><td>${cartItem.amount}</td><td>${cartItem.subtotal}</td>`
+              );
+              template += `</tbody><tfoot>Total: $${data.cart.total}</tfoot></table>`;
               return template;
-          }
+            }
           },
           xAxis: {
             type: 'category',

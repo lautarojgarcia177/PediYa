@@ -9,27 +9,24 @@ export const initialState: CartState = {
     total: 0
 };
 
+function calculateSubtotal(cartItem: CartItem): number {
+    return cartItem.menu.price * cartItem.amount;
+}
+
 function calculateTotal(cartItems: CartItem[]): number {
     return cartItems.reduce(
         (acc, curr) => {
-            let subtotal = 0;
-            if (!!curr && !!curr.menu && !!curr.menu.price) {
-                subtotal = curr?.menu?.price * curr.amount;
-            }
-            return acc + subtotal;
+            return acc + curr?.subtotal;
         },
         0
     );
-}
-
-function calculateSubtotal(cartItem: CartItem): number {
-    return cartItem.menu.price * cartItem.amount;
 }
 
 function addItemToCart(state: CartState, menu: Menu) {
     const _state = _.cloneDeep(state);
     let i = 0;
     let found = false;
+    // If this menu is already on cart, increment amount of it
     do {
         if (_state.items[i]?.menu?.name === menu.name) {
             _state.items[i].amount++;
@@ -38,14 +35,15 @@ function addItemToCart(state: CartState, menu: Menu) {
         }
         i++;
     } while (i < _state.items.length && !found);
+    _state.total = calculateTotal(_state.items);
     if (found) return _state;
+    // If this menu is not already on cart, add it
     let newCartItem: CartItem = {
         menu: menu,
         amount: 1,
         subtotal: 0
     }
-    const subtotal = calculateSubtotal(newCartItem);
-    newCartItem.subtotal = subtotal;
+    newCartItem.subtotal = calculateSubtotal(newCartItem);
     _state.items.push(newCartItem);
     _state.total = calculateTotal(_state.items);
     return _state;

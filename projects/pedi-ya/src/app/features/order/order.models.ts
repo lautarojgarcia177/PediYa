@@ -1,5 +1,3 @@
-import { EntityState } from "@ngrx/entity";
-
 export interface Menu {
     id: string;
     name: string;
@@ -8,4 +6,3 @@ export interface Menu {
     price: number;
 }
 
-export type MenuState = EntityState<Menu>;

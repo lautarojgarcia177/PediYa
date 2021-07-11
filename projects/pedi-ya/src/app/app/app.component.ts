@@ -21,7 +21,7 @@ import {
 } from '../core/settings/settings.actions';
 import { map, pluck, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { selectOrders } from '../features/order/order.state';
+import { selectOrder } from '../features/order/order.state';
 import { CartItem } from '../features/order/cart/cart.model';
 
 @Component({
@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
     this.theme$ = this.store.pipe(select(selectEffectiveTheme));
-    this.amountOfOrderItems$ = this.store.select(selectOrders)
+    this.amountOfOrderItems$ = this.store.select(selectOrder)
       .pipe(
         pluck('cart'),
         pluck('items'),

@@ -53,9 +53,11 @@ export class AuthComponent implements OnInit {
   }
 
   onSuccess(event) {
+    console.log(event);
       const user: User = {
         displayName: event.user.displayName,
-        email: event.user.email
+        email: event.user.email,
+        id: event.user.uid
       }
       this.store.dispatch(authActions.authLogin({user}));
   }

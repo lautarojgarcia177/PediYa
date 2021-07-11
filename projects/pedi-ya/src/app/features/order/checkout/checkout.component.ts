@@ -1,53 +1,41 @@
-import { Store, select } from '@ngrx/store';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import * as cartActions from '../cart/cart.actions';
 
 import {
   AppState,
   NotificationService,
-  routeAnimations,
-  ROUTE_ANIMATIONS_ELEMENTS,
-  selectIsAuthenticated
 } from '../../../core/core.module';
 
-export interface Transaction {
-  item: string;
-  cost: number;
-}
-
-import { selectOrders, State } from '../order.state';
-import { pluck, tap } from 'rxjs/operators';
-import { CartState } from '../cart/cart.model';
+import { selectOrder } from '../order.state';
+import { pluck } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'pedi-ya-order',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
-  animations: [routeAnimations],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent {
 
-  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+  cart$ = this.store.select(selectOrder).pipe(pluck('cart'));
 
-  cart$ = this.store.select(selectOrders).pipe(pluck('cart'));
-
-  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private store: Store<AppState>, private notificationService: NotificationService, private translate: TranslateService, private router: Router, private orderService: OrderService) { }
 
   displayedColumns = ['name', 'amount', 'price', 'subtotal'];
 
   onConfirmOrder() {
-    this.store.dispatch(cartActions.resetCart());
-    this.translate.get('pedi-ya.order.checkout.orderConfirmed').subscribe(translation =>
-      this.notificationService.success(translation)
-    );
-    this.router.navigate(['order', 'order-confirmed']);
+    this.orderService.confirmOrder().subscribe(
+      () => {
+        this.translate.get('pedi-ya.order.checkout.orderConfirmed').subscribe(translation =>
+          this.notificationService.success(translation)
+        );
+        this.router.navigate(['order', 'order-confirmed']);
+      }
+    )
   }
 
   onCancelOrder() {

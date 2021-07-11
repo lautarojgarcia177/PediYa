@@ -6,8 +6,8 @@ import { cartReducer } from './cart/cart.reducer';
 
 export const FEATURE_NAME = 'order';
 
-export const selectOrders = createFeatureSelector<State, OrderState>(FEATURE_NAME);
-  
+export const selectOrder = createFeatureSelector<State, OrderState>(FEATURE_NAME);
+
 export const reducers: ActionReducerMap<OrderState> = {
   cart: cartReducer
 };

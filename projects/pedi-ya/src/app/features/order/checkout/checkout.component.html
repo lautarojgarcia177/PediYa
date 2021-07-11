@@ -9,7 +9,7 @@
     <ng-container *ngIf="cart$ | async as cart">
         <div class="row" *ngIf="cart.items.length > 0">
             <div class="col-12">
-                <div [ngClass]="routeAnimationsElements" class="mat-elevation-z8">
+                <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="cart.items">
 
                     <ng-container matColumnDef="name">

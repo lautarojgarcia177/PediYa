@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ofType, createEffect, Actions } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { tap, withLatestFrom } from 'rxjs/operators';
 
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
@@ -18,8 +18,11 @@ export class AuthEffects {
         tap(() => 
           this.router.navigate(['menu-list'])
         ),
-        tap(() =>
-          this.localStorageService.setItem(AUTH_KEY, { isAuthenticated: true })
+        tap( authData =>
+          this.localStorageService.setItem(AUTH_KEY, {
+            isAuthenticated: true,
+            user: authData.user
+          })
         )
       ),
     { dispatch: false }

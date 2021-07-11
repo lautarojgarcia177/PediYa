@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/animations/route.animations";
 import { Menu } from "../order.models";
 import { OrderService } from "../order.service";
-import { selectOrders, State } from "../order.state";
+import { selectOrder, State } from "../order.state";
 import * as cartActions from "../cart/cart.actions";
 import { combineLatest, Subscription } from "rxjs";
 import { map, mergeMap, pluck, switchMap, take, tap, withLatestFrom } from "rxjs/operators";
@@ -53,7 +53,7 @@ export class MenuListComponent {
             });
             this.menusWithCart = _menusWithCart;
         }),
-        switchMap(() => this.store.select(selectOrders).pipe(pluck('cart'), pluck('items'))),
+        switchMap(() => this.store.select(selectOrder).pipe(pluck('cart'), pluck('items'))),
         tap(() => this.menusWithCart.forEach(menu => menu.amountOnCart = 0)),
         tap((cartItems) => {
             cartItems.forEach(cartItem => {
@@ -63,7 +63,7 @@ export class MenuListComponent {
         tap(() => this.changeDetector.detectChanges()),
     )
 
-    cartItems$ = this.store.select(selectOrders).pipe(pluck('cart'))
+    cartItems$ = this.store.select(selectOrder).pipe(pluck('cart'))
 
     constructor(private orderService: OrderService, private store: Store<AppState>, private router: Router, private changeDetector: ChangeDetectorRef) {
     }

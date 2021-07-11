@@ -7,7 +7,7 @@ import * as cartActions from '../cart/cart.actions';
 import { AppState, LocalStorageService } from '../../../core/core.module';
 import { CartState } from './cart.model';
 import { of } from 'rxjs';
-import { selectOrders } from '../order.state';
+import { selectOrder } from '../order.state';
 
 
 export const CART_KEY = 'ORDER.CART';
@@ -24,7 +24,7 @@ export class CartEffects {
             cartActions.resetCart
         ),
         withLatestFrom(
-            this.store.select(selectOrders)
+            this.store.select(selectOrder)
             .pipe(
                 pluck('cart')
             )
