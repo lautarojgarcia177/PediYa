@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "@angular/fire/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";

@@ -1,16 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component} from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/animations/route.animations";
 import { Menu } from "../order.models";
 import { OrderService } from "../order.service";
-import { selectOrder, State } from "../order.state";
+import { selectOrder } from "../order.state";
 import * as cartActions from "../cart/cart.actions";
-import { combineLatest, Subscription } from "rxjs";
-import { map, mergeMap, pluck, switchMap, take, tap, withLatestFrom } from "rxjs/operators";
-import { CartItem, CartState } from "../cart/cart.model";
+import { pluck, switchMap, take, tap } from "rxjs/operators";
 import { AppState } from "../../../core/core.state";
-import { concatLatestFrom } from "@ngrx/effects";
 
 
 class MenuWithCart implements Menu {

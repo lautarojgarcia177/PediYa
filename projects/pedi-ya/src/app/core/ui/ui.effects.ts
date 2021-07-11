@@ -17,7 +17,6 @@ export class UiEffects {
             ofType(
                 uiActions.showSpinner
             ),
-            tap(() => console.log('show spinner effect')),
             tap(() =>
             this.spinner.show()
             )
@@ -31,7 +30,6 @@ export class UiEffects {
                 ofType(
                   uiActions.hideSpinner
                   ),
-                  tap(() => console.log('hide spinner effect')),
                   tap(() =>
               this.spinner.hide()
             )

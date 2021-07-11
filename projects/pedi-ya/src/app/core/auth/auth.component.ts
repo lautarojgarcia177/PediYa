@@ -53,7 +53,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSuccess(event) {
-    console.log(event);
       const user: User = {
         displayName: event.user.displayName,
         email: event.user.email,
