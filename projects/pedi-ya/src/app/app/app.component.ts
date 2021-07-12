@@ -82,7 +82,6 @@ export class AppComponent implements OnInit {
 
   private initNavbarItems(): void {
     this.isAuthenticated$.subscribe(isAuthenticated => {
-      console.log('is auth', isAuthenticated);
       if(isAuthenticated) {
         this.navigation = [
           { link: 'order', label: 'pedi-ya.menu.order' },

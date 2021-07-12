@@ -10,6 +10,9 @@ import { AppState } from "../../../core/core.state";
 import { selectSettingsLanguage } from "../../../core/settings/settings.selectors";
 import { Subscription } from "rxjs";
 
+let datePipe = new DatePipe('en-US');
+let dateFormat: string = 'MM/dd/yyyy';
+
 @Component({
   selector: 'pedi-ya-user-orders-list',
   templateUrl: './user-orders-list.component.html',
@@ -33,7 +36,7 @@ export class UserOrdersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userOrdersSubscription = this.ordersService.getOrders().subscribe(userOrders => {
+    this.userOrdersSubscription = this.ordersService.getCurrentUserOrders().subscribe(userOrders => {
       this.userOrders = userOrders;
       this.draw();
     });
@@ -58,12 +61,10 @@ export class UserOrdersListComponent implements OnInit {
     let xAxisData = [];
     let seriesData = [];
     this.store.select(selectSettingsLanguage).pipe(take(1)).subscribe(language => {
-      const datePipe = new DatePipe('en-US');
       this.userOrders?.forEach(userOrder => {
-        let dateFormat: string = 'MM/dd/yyyy';
         if (language === 'es') dateFormat = 'dd/MM/yyyy';
         if (language === 'en') dateFormat = 'MM/dd/yyyy';
-        xAxisData.push(datePipe.transform(userOrder.timestamp.seconds, dateFormat));
+        xAxisData.push(datePipe.transform(userOrder.timestamp, dateFormat));
         seriesData.push(userOrder.cart.total);
       });
       this.translate.get([
@@ -101,7 +102,8 @@ export class UserOrdersListComponent implements OnInit {
                   </tr>
                 `
               );
-              template += `</tbody><tfoot>Total: $${data?.cart?.total}</tfoot></table>`;
+              const formatedTimestamp = datePipe.transform(data.timestamp, dateFormat);
+              template += `</tbody><tfoot>Total: $${data?.cart?.total}&nbsp;&nbsp;&nbsp;${translations['pedi-ya.user-orders.user-orders-list.date']}: ${formatedTimestamp}</tfoot></table>`;
               return template;
             }
           },

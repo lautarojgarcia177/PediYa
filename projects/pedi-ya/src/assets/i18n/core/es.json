@@ -99,6 +99,6 @@
    "pedi-ya.user-orders.orders-list.orders-over-time.title": "Tus gastos a lo largo del tiempo",
    "pedi-ya.user-orders.user-orders-list.amount": "Cantidad",
    "pedi-ya.user-orders.user-orders-list.date": "Fecha",
-   "pedi-ya.user-orders.user-orders-list.totalSpendingDescription": "Su gasto total desde su promer orden es de",
+   "pedi-ya.user-orders.user-orders-list.totalSpendingDescription": "Su gasto total desde su primer orden es de",
    "pedi-ya.loading": "Cargando"
 }

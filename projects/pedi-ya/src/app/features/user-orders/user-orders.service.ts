@@ -7,6 +7,17 @@ import { AppState } from "../../core/core.state";
 import { Menu } from "../order/order.models";
 import { UserOrder } from "./user-orders.models";
 import * as uiActions from '../../core/ui/ui.actions';
+import { selectAuth } from "../../core/auth/auth.selectors";
+// import { Timestamp } from "@firebase/firestore-types"
+import { CartState } from "../order/cart/cart.model";
+
+import firebase from 'firebase';
+
+interface FirebaseUserOrder {
+  user: string,
+  cart: CartState,
+  timestamp: { seconds: number, nanoseconds: number }
+};
 
 @Injectable()
 export class UserOrdersService {
@@ -15,14 +26,33 @@ export class UserOrdersService {
   }
 
   public getOrders(): Observable<any[]> {
-    return this.afs.collection<UserOrder[]>('orders').get().pipe(
-      map((querySnapshot) => querySnapshot.docs.map(doc => doc.data())), 
-  );
+    return this.afs.collection<FirebaseUserOrder[]>('orders').get().pipe(
+      map((querySnapshot) => querySnapshot.docs.map(doc => doc.data())),
+      tap(console.info)
+    );
+  }
+
+  public getCurrentUserOrders(): Observable<UserOrder[]> {
+    return this.store.select(selectAuth).pipe(
+      switchMap(auth => this.afs.collection<FirebaseUserOrder>('orders', ref => ref.where('user', '==', auth.user.id)).get().pipe(
+        map((querySnapshot) => querySnapshot.docs.map(doc => doc.data())),
+        map(userOrders =>
+          userOrders.map(userOrder => {
+            const timestampInstance = new firebase.firestore.Timestamp(userOrder.timestamp.seconds, userOrder.timestamp.nanoseconds);
+            return {
+              ...userOrder,
+              timestamp: timestampInstance.toDate()
+            }
+          })
+        ),
+        tap(console.info)
+      ))
+    )
   }
 
   public getMenu(menuId: string): Observable<Menu> {
     const menu$ = this.afs.collection<any>(`menus`).get().pipe(
-      map(querySnapshot => querySnapshot.docs.map(doc => ({ menu: doc.data(), id: doc.id}) )),
+      map(querySnapshot => querySnapshot.docs.map(doc => ({ menu: doc.data(), id: doc.id }))),
       map(documents => documents.find(doc => doc.id == menuId)),
       map(doc => {
         const menu: Menu = {

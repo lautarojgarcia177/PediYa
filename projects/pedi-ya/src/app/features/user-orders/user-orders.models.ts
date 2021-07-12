@@ -4,7 +4,7 @@ import { CartState } from "../order/cart/cart.model";
 export interface UserOrder {
     user: string,
     cart: CartState,
-    timestamp: any
+    timestamp: Date
 }
 
 // export type MenuState = EntityState<UserOrder>;
