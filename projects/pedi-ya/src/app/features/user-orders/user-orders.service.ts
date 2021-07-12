@@ -45,6 +45,8 @@ export class UserOrdersService {
             }
           })
         ),
+        // sort orders by date
+        map(userOrders => userOrders.sort((a, b) => b.timestamp < a.timestamp ? 1: -1)),
         tap(console.info)
       ))
     )
