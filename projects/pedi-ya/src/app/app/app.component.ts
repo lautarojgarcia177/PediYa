@@ -86,16 +86,16 @@ export class AppComponent implements OnInit {
         this.navigation = [
           { link: 'order', label: 'pedi-ya.menu.order' },
           { link: 'user-orders', label: 'pedi-ya.menu.user-orders' },
-          { link: 'about', label: 'pedi-ya.menu.about' },
+          // { link: 'about', label: 'pedi-ya.menu.about' },
         ];
         this.navigationSideMenu = [
           ...this.navigation,
-          { link: 'settings', label: 'pedi-ya.menu.settings' }
+          { link: 'settings', label: 'pedi-ya.menu.settings' },
         ];
       } else {
         this.navigation = [
           { link: 'order', label: 'pedi-ya.menu.order' },
-          { link: 'about', label: 'pedi-ya.menu.about' },
+          // { link: 'about', label: 'pedi-ya.menu.about' },
         ];
         this.navigationSideMenu = [
           ...this.navigation,

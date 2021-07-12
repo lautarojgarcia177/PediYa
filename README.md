@@ -11,13 +11,15 @@ Try it live: https://pediya-cde90.web.app/
 
 @ngrx/store-devtools - to enable a powerful time-travelling debugger.
 
-@angular/material - material design component library, theming, ...
+@angular/material - material design component library, multi theming, ...
 
 routing
 
 @angular/firebase - To use firebase services
 
 @angular/service-worker - For caching static files and allowing the app to be installable.
+
+ngx/translate - For multilanguage
 
 Angular CLI configuration (prod build, budgets, ...)
 
