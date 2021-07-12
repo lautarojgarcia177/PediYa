@@ -4,7 +4,7 @@ import { UserOrder } from "../user-orders.models";
 import { EChartsOption } from "echarts";
 import { DatePipe } from "@angular/common";
 import { TranslateService } from "@ngx-translate/core";
-import { take, tap } from "rxjs/operators";
+import { take } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../../core/core.state";
 import { selectSettingsLanguage } from "../../../core/settings/settings.selectors";

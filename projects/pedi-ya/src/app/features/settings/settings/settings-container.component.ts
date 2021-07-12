@@ -22,6 +22,7 @@ import { selectSettings } from '../../../core/settings/settings.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsContainerComponent implements OnInit {
+  
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
   settings$: Observable<SettingsState>;
 
@@ -34,13 +35,7 @@ export class SettingsContainerComponent implements OnInit {
 
   languages = [
     { value: 'en', label: 'English' },
-    { value: 'de', label: 'Deutsch' },
-    { value: 'sk', label: 'Slovenčina' },
-    { value: 'fr', label: 'Français' },
     { value: 'es', label: 'Español' },
-    { value: 'pt-br', label: 'Português' },
-    { value: 'zh-cn', label: '简体中文' },
-    { value: 'he', label: 'עברית' }
   ];
 
   constructor(private store: Store<State>) {}
