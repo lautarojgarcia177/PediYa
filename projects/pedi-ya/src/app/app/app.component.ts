@@ -1,5 +1,5 @@
 import browser from 'browser-detect';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,8 @@ import {
   selectIsAuthenticated,
   selectSettingsStickyHeader,
   selectSettingsLanguage,
-  selectEffectiveTheme
+  selectEffectiveTheme,
+  selectAuth
 } from '../core/core.module';
 import {
   actionSettingsChangeAnimationsPageDisabled,
@@ -22,6 +23,7 @@ import { map, pluck, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { selectOrder } from '../features/order/order.state';
 import { CartItem } from '../features/order/cart/cart.model';
+import { NgxAuthFirebaseuiAvatarComponent } from 'ngx-auth-firebaseui';
 
 @Component({
   selector: 'pedi-ya-root',
@@ -29,7 +31,7 @@ import { CartItem } from '../features/order/cart/cart.model';
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
@@ -44,6 +46,8 @@ export class AppComponent implements OnInit {
   language$: Observable<string>;
   theme$: Observable<string>;
   amountOfOrderItems$: Observable<number>;
+
+  @ViewChild('ngxAuthFirebaseUiAvatar') public ngxAuthFirebaseUiAvatar: NgxAuthFirebaseuiAvatarComponent;
 
   constructor(
     private store: Store,
@@ -77,7 +81,15 @@ export class AppComponent implements OnInit {
           (acc, curr) => acc += curr.amount, 0)),
       );
 
-      this.initNavbarItems()
+      this.initNavbarItems();
+  }
+
+  ngAfterViewInit(): void {
+    this.store.select(selectIsAuthenticated).subscribe(isAuth => {
+      if (!isAuth) {
+        this.ngxAuthFirebaseUiAvatar?.signOut().then(() => {});
+      }
+    });
   }
 
   private initNavbarItems(): void {
